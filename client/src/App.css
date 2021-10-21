@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.css';
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,49 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+header {
+  font-size: 50px;
+}
+
+.header-title{
+  color: #b9227f;
+}
+.header-title:hover {
+  color: #ec4aae;;
+}
+
+.LandingButton{
+  border: 1px solid #80004f;
+  border-radius: 4px;
+  padding-bottom: 40px;
+  
+  background-color: #b9227f;
+  color: aliceblue;
+}
+
+.LandingButton:hover{
+    background-color: #e658af;
+    color: rgb(245, 245, 245);
+    border: 1px solid #002364;
+}
+
+.Spotify {
+  margin-left: 30px;
+  margin-bottom: 25px;
+  border: 3px solid #008321b9 ;
+}
+
+.Recipe{
+  margin-left: 30px;
+  border: 3px solid #830000b9 ;
+ 
+}
+
+.card-container{
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 30px 0;
+  display: flex;
 }
