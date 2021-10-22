@@ -8,7 +8,6 @@ import useFetch from "react-fetch-hook"
 
 function RecipeCard() {
 
-
     const [someState, setSomeState] = useState(false);
 
 
@@ -29,13 +28,6 @@ function RecipeCard() {
     }
 
     )
-
-
-    // let { userInput } = useFetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=3b8c9269a77c431a8b604b2ada505fef`, {
-    //     depends: [someState] // don't call request, if someState: false
-
-
-    // })
 
     const renderData = () => {
         if (data) {
@@ -96,21 +88,6 @@ function RecipeCard() {
 
     ]
 
-<<<<<<< HEAD
-    function search(value) {
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52`)
-            .then(response => {
-                return response.json()
-            })
-            .then(function (response) {
-                console.log(response);
-
-                // {
-                //     console.log(response.results.map((recipe) => (
-                //         recipe.title
-                //     )))
-                // }
-=======
 
     // function search(value) {
     //     if (searchState) {
@@ -141,7 +118,7 @@ function RecipeCard() {
 
     function searchCuisine(value) {
         // GET request using fetch with error handling
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=3b8c9269a77c431a8b604b2ada505fef`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52`)
             .then(async response => {
                 const result = await response.json();
 
@@ -151,25 +128,27 @@ function RecipeCard() {
                     const error = (result && result.message) || response.statusText;
                     return Promise.reject(error);
                 }
->>>>>>> 913a5a476a38cc17d2ca97782f71ea89e9f1eb9f
-
-                return console.log(result)
+                console.log(result);
+                let recipe = result.results[0].title  
+                console.log(recipe)
+                return recipe
+                
             })
             .catch(error => {
 
                 console.error('There was an error!', error);
             });
     }
-
-
-
+    // let test = recipe;
     return (
 
         <div>
             <Card title="Recipe Select" className="Recipe" hoverable={true} style={{ width: 700 }}>
                 <Cascader options={options} style={{ width: 400 }} placeholder="Please select" onChange={searchCuisine} />
-
-
+                <div>
+                    Test
+                    {/* {test} */}
+                </div>
             </Card>
 
             <Button type="primary" onClick={random}>
