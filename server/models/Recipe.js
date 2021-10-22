@@ -17,7 +17,6 @@ const recipeSchema = new Schema({
             steps: String
         }
     ]
-
 });
 
 module.exports = recipeSchema;
