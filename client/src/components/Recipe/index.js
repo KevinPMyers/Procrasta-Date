@@ -19,7 +19,7 @@ function RecipeCard() {
         }
     }
 
-    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13", {
+    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=346d76812ee94c709e0825774f1e1d52", {
         depends: [someState] // don't call request, if someState: false
 
 
@@ -86,18 +86,18 @@ function RecipeCard() {
     ]
 
     function search(value) {
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52`)
             .then(response => {
                 return response.json()
             })
             .then(function (response) {
+                console.log(response);
 
-
-                {
-                    console.log(response.results.map((recipe) => (
-                        recipe.title
-                    )))
-                }
+                // {
+                //     console.log(response.results.map((recipe) => (
+                //         recipe.title
+                //     )))
+                // }
 
 
             }
