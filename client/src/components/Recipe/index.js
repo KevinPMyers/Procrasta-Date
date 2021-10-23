@@ -10,38 +10,27 @@ import useFetch from "react-fetch-hook"
 function RecipeCard() {
 
     const [someState, setSomeState] = useState(false);
-    const [recipePicked, setRecipePicked] = useState(false);
-
     const [searchState, setsearchState] = useState(true);
-
     const [results, setResults] = useState("")
-
+    const [getIngredients, setGetIngredients] = useState("");
 
     const random = () => {
-        if (someState == false) {
+        if (someState === false) {
             setSomeState(true)
         }
-        else if (someState == true) {
+        else if (someState === true) {
             setSomeState(false)
         }
     }
 
-<<<<<<< HEAD
-    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=346d76812ee94c709e0825774f1e1d52", {
-=======
 
-    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13", {
->>>>>>> 6e495799961e0d5fc8dc81a5da81c9c2b091fa11
+    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=346d76812ee94c709e0825774f1e1d52", {
         depends: [someState] // don't call request, if someState: false
 
     }
 
     )
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 6e495799961e0d5fc8dc81a5da81c9c2b091fa11
     const renderData = () => {
         if (data) {
             return <div>
@@ -100,27 +89,6 @@ function RecipeCard() {
 
     ]
 
-<<<<<<< HEAD
-    function searchCuisine(value) {
-        // GET request using fetch with error handling
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52`)
-            .then(async response => {
-                const result = await response.json();
-
-                // check for error response
-                if (!response.ok) {
-                    // get error message from body or default to response statusText
-                    const error = (result && result.message) || response.statusText;
-                    return Promise.reject(error);
-                }
-                console.log(result);
-                let recipe = result.results[0].title
-                console.log(recipe)
-                return function () {
-                    return recipe
-                }
-
-=======
 
     function searchCuisine(value) {
         // GET request using fetch with error handling
@@ -133,49 +101,39 @@ function RecipeCard() {
             setsearchState(false)
         }
 
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=3b8c9269a77c431a8b604b2ada505fef`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52`)
             .then(response => {
                 return response.json()
->>>>>>> 6e495799961e0d5fc8dc81a5da81c9c2b091fa11
             })
             .then(response => {
-                setResults(response.results[0].title)
+                setResults(response.results.title)
 
             }
             )
     }
-    useEffect(() => {
-        let test = searchCuisine()
-        console.log(test);
-    }, searchCuisine)
 
     return (
 
         <div>
             <Card title="Recipe Select" className="Recipe" hoverable={true} style={{ width: 700 }}>
                 <Cascader options={options} style={{ width: 400 }} placeholder="Please select" onChange={searchCuisine} />
-<<<<<<< HEAD
-                <div>
-                    Test
-                    
-                </div>
-=======
->>>>>>> 6e495799961e0d5fc8dc81a5da81c9c2b091fa11
-            </Card>
+            </Card >
 
-            <Button type="primary" onClick={random}>
-                Screw It
-            </Button>
-            {renderData()}
+        <Button type="primary" onClick={random}>
+            Screw It
+        </Button>
+    { renderData() }
 
-            {searchState ? <div></div> :
-                <div>
-                    {results}
-                </div>}
+    {
+        searchState ? <div></div> :
+            <div>
+                {results}
+            </div>
+    }
 
 
 
-        </div>
+        </div >
     )
 }
 
