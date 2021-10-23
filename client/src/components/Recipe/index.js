@@ -12,7 +12,10 @@ function RecipeCard() {
     const [someState, setSomeState] = useState(false);
 
 
-    const [searchState, setsearchState] = useState(false);
+    const [searchState, setsearchState] = useState(true);
+
+    const [results, setResults] = useState("")
+
 
     const random = () => {
         if (someState == false) {
@@ -23,6 +26,7 @@ function RecipeCard() {
         }
     }
 
+
     let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13", {
         depends: [someState] // don't call request, if someState: false
 
@@ -30,12 +34,6 @@ function RecipeCard() {
 
     )
 
-
-    // let { userInput } = useFetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=3b8c9269a77c431a8b604b2ada505fef`, {
-    //     depends: [someState] // don't call request, if someState: false
-
-
-    // })
 
     const renderData = () => {
         if (data) {
@@ -97,52 +95,26 @@ function RecipeCard() {
     ]
 
 
-    // function search(value) {
-    //     if (searchState) {
-
-    //         fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=3b8c9269a77c431a8b604b2ada505fef `)
-    //             .then(response => {
-    //                 return response.json()
-    //             })
-    //             .then(function (response) {
-
-
-    //                 console.log(response)
-    //                 return 1
-
-
-
-    //             }
-    //             )
-    //     }
-    //     else {
-
-    //         return <div></div>
-
-    //     }
-
-
-    // }
-
     function searchCuisine(value) {
         // GET request using fetch with error handling
+
+
+        if (searchState == false) {
+            setsearchState(true)
+        }
+        else if (searchState == true) {
+            setsearchState(false)
+        }
+
         fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=3b8c9269a77c431a8b604b2ada505fef`)
-            .then(async response => {
-                const result = await response.json();
-
-                // check for error response
-                if (!response.ok) {
-                    // get error message from body or default to response statusText
-                    const error = (result && result.message) || response.statusText;
-                    return Promise.reject(error);
-                }
-
-                return console.log(result)
+            .then(response => {
+                return response.json()
             })
-            .catch(error => {
+            .then(response => {
+                setResults(response.results[0].title)
 
-                console.error('There was an error!', error);
-            });
+            }
+            )
     }
 
 
@@ -152,14 +124,19 @@ function RecipeCard() {
         <div>
             <Card title="Recipe Select" className="Recipe" hoverable={true} style={{ width: 700 }}>
                 <Cascader options={options} style={{ width: 400 }} placeholder="Please select" onChange={searchCuisine} />
-
-
             </Card>
 
             <Button type="primary" onClick={random}>
                 Screw It
             </Button>
             {renderData()}
+
+            {searchState ? <div></div> :
+                <div>
+                    {results}
+                </div>}
+
+
 
         </div>
     )
