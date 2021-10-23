@@ -12,7 +12,10 @@ function RecipeCard() {
     const [someState, setSomeState] = useState(false);
     const [recipePicked, setRecipePicked] = useState(false);
 
-    const [searchState, setsearchState] = useState(false);
+    const [searchState, setsearchState] = useState(true);
+
+    const [results, setResults] = useState("")
+
 
     const random = () => {
         if (someState == false) {
@@ -23,12 +26,22 @@ function RecipeCard() {
         }
     }
 
+<<<<<<< HEAD
     let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=346d76812ee94c709e0825774f1e1d52", {
+=======
+
+    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13", {
+>>>>>>> 6e495799961e0d5fc8dc81a5da81c9c2b091fa11
         depends: [someState] // don't call request, if someState: false
 
     }
 
     )
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 6e495799961e0d5fc8dc81a5da81c9c2b091fa11
     const renderData = () => {
         if (data) {
             return <div>
@@ -87,6 +100,7 @@ function RecipeCard() {
 
     ]
 
+<<<<<<< HEAD
     function searchCuisine(value) {
         // GET request using fetch with error handling
         fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52`)
@@ -106,11 +120,29 @@ function RecipeCard() {
                     return recipe
                 }
 
-            })
-            .catch(error => {
+=======
 
-                console.error('There was an error!', error);
-            });
+    function searchCuisine(value) {
+        // GET request using fetch with error handling
+
+
+        if (searchState == false) {
+            setsearchState(true)
+        }
+        else if (searchState == true) {
+            setsearchState(false)
+        }
+
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=3b8c9269a77c431a8b604b2ada505fef`)
+            .then(response => {
+                return response.json()
+>>>>>>> 6e495799961e0d5fc8dc81a5da81c9c2b091fa11
+            })
+            .then(response => {
+                setResults(response.results[0].title)
+
+            }
+            )
     }
     useEffect(() => {
         let test = searchCuisine()
@@ -122,16 +154,26 @@ function RecipeCard() {
         <div>
             <Card title="Recipe Select" className="Recipe" hoverable={true} style={{ width: 700 }}>
                 <Cascader options={options} style={{ width: 400 }} placeholder="Please select" onChange={searchCuisine} />
+<<<<<<< HEAD
                 <div>
                     Test
                     
                 </div>
+=======
+>>>>>>> 6e495799961e0d5fc8dc81a5da81c9c2b091fa11
             </Card>
 
             <Button type="primary" onClick={random}>
                 Screw It
             </Button>
             {renderData()}
+
+            {searchState ? <div></div> :
+                <div>
+                    {results}
+                </div>}
+
+
 
         </div>
     )
