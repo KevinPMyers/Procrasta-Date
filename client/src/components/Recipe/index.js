@@ -14,7 +14,7 @@ function RecipeCard() {
     const [results, setResults] = useState("")
 
     const [steps, setSteps] = useState([])
-
+    const [getIngredients, setGetIngredients] = useState('');
     const [diet, setDiet] = useState("")
 
 
@@ -39,7 +39,7 @@ function RecipeCard() {
     }
 
 
-    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13", {
+    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=346d76812ee94c709e0825774f1e1d52", {
         depends: [someState] // don't call request, if someState: false
 
     }
@@ -145,12 +145,13 @@ function RecipeCard() {
         // GET request using fetch with error handling
 
 
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=3b8c9269a77c431a8b604b2ada505fef&addRecipeInformation=true`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52&addRecipeInformation=true`)
             .then(response => {
                 return response.json()
             })
             .then(response => {
                 console.log(response)
+                // console.log(response.results[0].id)
 
                 let i = Math.floor(Math.random() * response.results.length)
 
@@ -159,6 +160,9 @@ function RecipeCard() {
                     image: response.results[i].image,
                     time: response.results[i].readyInMinutes
                 })
+                setGetIngredients(
+                    response.results[i].id
+                )
 
                 setSteps(response.results[i].analyzedInstructions[0].steps.map((e) => (
                     `${e.step}  `
@@ -171,12 +175,29 @@ function RecipeCard() {
             )
     }
 
+    function searchIngredients() {
+        fetch(`https://api.spoonacular.com/recipes/${getIngredients}/information?includeNutrition=false&apiKey=346d76812ee94c709e0825774f1e1d52`)
+        .then(response => {
+            return response.json()
+        })
+        .then(response => {
+            console.log(response)
+            console.log(response.extendedIngredients)
+            console.log(response.extendedIngredients.map((ingredient) => (
+                `${ingredient.name}`
+            )))
+            setGetIngredients(response.extendedIngredients.map((ingredient) => (
+                `${ingredient.name}`)))
+        })
+    }
+
+    console.log(getIngredients);
     return (
 
         <div>
             <Card title="Recipe Select" className="Recipe" hoverable={true} style={{ width: 700 }}>
                 <Cascader options={options} size="large" style={{ width: 400 }} placeholder="Select a Dish Type!" onChange={searchCuisine} />
-
+                <div>{searchIngredients()}</div>
             </Card >
 
 
@@ -188,6 +209,8 @@ function RecipeCard() {
                         <img className="food-pic" src={results.image}></img>
                         <p className="ready-time"> Ready in {results.time} minutes!</p>
                         <p className="instructions">  {steps}   </p>
+                        <p className="ingredient-title"> Ingredients: </p>
+                        <p className="ingredients"> {getIngredients}</p>
                     </Card>
             }
 
