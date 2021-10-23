@@ -5,43 +5,49 @@ import { useEffect, useState } from "react";
 import useFetch from "react-fetch-hook"
 
 
-
-
 function RecipeCard() {
 
     const [someState, setSomeState] = useState(false);
-    const [recipePicked, setRecipePicked] = useState(false);
+
 
     const [searchState, setsearchState] = useState(true);
 
     const [results, setResults] = useState("")
 
+    const [steps, setSteps] = useState([])
+
+    const [diet, setDiet] = useState("")
+
 
     const random = () => {
-        if (someState == false) {
+        if (someState === false) {
             setSomeState(true)
         }
-        else if (someState == true) {
+        else if (someState === true) {
             setSomeState(false)
         }
+
     }
 
-<<<<<<< HEAD
-    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=346d76812ee94c709e0825774f1e1d52", {
-=======
+    const reset = () => {
+        if (searchState === false) {
+            setsearchState(true)
+        }
+        else if (searchState === true) {
+            setsearchState(false)
+        }
+
+    }
+
 
     let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13", {
->>>>>>> 6e495799961e0d5fc8dc81a5da81c9c2b091fa11
         depends: [someState] // don't call request, if someState: false
 
     }
 
     )
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 6e495799961e0d5fc8dc81a5da81c9c2b091fa11
     const renderData = () => {
         if (data) {
             return <div>
@@ -58,6 +64,11 @@ function RecipeCard() {
 
     const options = [
         {
+            value: 'French',
+            label: 'French',
+
+        },
+        {
             value: 'Italian',
             label: 'Italian',
 
@@ -65,6 +76,11 @@ function RecipeCard() {
         {
             value: 'American',
             label: 'American',
+
+        },
+        {
+            value: 'Caribbean',
+            label: 'Caribbean',
 
         },
         {
@@ -83,6 +99,11 @@ function RecipeCard() {
 
         },
         {
+            value: 'Mediterranean',
+            label: 'Mediterranean',
+
+        },
+        {
             value: 'European',
             label: 'European',
 
@@ -96,86 +117,94 @@ function RecipeCard() {
             value: 'Mexican',
             label: 'Mexican',
 
-        }
+        },
+        {
+            value: 'Thai',
+            label: 'Thai',
+
+        },
+        {
+            value: 'German',
+            label: 'German',
+
+        },
+        {
+            value: 'Southern',
+            label: 'Southern',
+
+        },
+        {
+            value: 'Middle Eastern',
+            label: 'Middle Eastern',
+
+        },
+
 
     ]
 
-<<<<<<< HEAD
-    function searchCuisine(value) {
-        // GET request using fetch with error handling
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52`)
-            .then(async response => {
-                const result = await response.json();
-
-                // check for error response
-                if (!response.ok) {
-                    // get error message from body or default to response statusText
-                    const error = (result && result.message) || response.statusText;
-                    return Promise.reject(error);
-                }
-                console.log(result);
-                let recipe = result.results[0].title
-                console.log(recipe)
-                return function () {
-                    return recipe
-                }
-
-=======
 
     function searchCuisine(value) {
         // GET request using fetch with error handling
 
 
-        if (searchState == false) {
-            setsearchState(true)
-        }
-        else if (searchState == true) {
-            setsearchState(false)
-        }
-
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=3b8c9269a77c431a8b604b2ada505fef`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=3b8c9269a77c431a8b604b2ada505fef&addRecipeInformation=true`)
             .then(response => {
                 return response.json()
->>>>>>> 6e495799961e0d5fc8dc81a5da81c9c2b091fa11
             })
             .then(response => {
-                setResults(response.results[0].title)
+                console.log(response)
+
+                let i = Math.floor(Math.random() * response.results.length)
+
+                setResults({
+                    title: response.results[i].title,
+                    image: response.results[i].image,
+                    time: response.results[i].readyInMinutes
+                })
+
+                setSteps(response.results[i].analyzedInstructions[0].steps.map((e) => (
+                    `${e.step}  `
+                )))
+
+
+
 
             }
             )
     }
-    useEffect(() => {
-        let test = searchCuisine()
-        console.log(test);
-    }, searchCuisine)
+    // useEffect(() => {
+    //     let test = searchCuisine()
+    //     console.log(test);
+    // }, searchCuisine)
 
     return (
 
         <div>
             <Card title="Recipe Select" className="Recipe" hoverable={true} style={{ width: 700 }}>
-                <Cascader options={options} style={{ width: 400 }} placeholder="Please select" onChange={searchCuisine} />
-<<<<<<< HEAD
-                <div>
-                    Test
-                    
-                </div>
-=======
->>>>>>> 6e495799961e0d5fc8dc81a5da81c9c2b091fa11
-            </Card>
+                <Cascader options={options} size="large" style={{ width: 400 }} placeholder="Select a Dish Type!" onChange={searchCuisine} />
 
-            <Button type="primary" onClick={random}>
-                Screw It
+            </Card >
+
+
+
+            {
+                !results ? <div></div> :
+                    <Card style={{ width: 700 }} hoverable={true} className="returned-recipe" >
+                        <h3> {results.title} </h3>
+                        <img className="food-pic" src={results.image}></img>
+                        <p className="ready-time"> Ready in {results.time} minutes!</p>
+                        <p className="instructions">  {steps}   </p>
+                    </Card>
+            }
+
+            <Button className="help-me" onClick={random}>
+                No Time, Just Help!!
             </Button>
             {renderData()}
 
-            {searchState ? <div></div> :
-                <div>
-                    {results}
-                </div>}
 
 
-
-        </div>
+        </div >
     )
 }
 
