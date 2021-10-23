@@ -6,10 +6,11 @@ import useFetch from "react-fetch-hook"
 
 
 
+
 function RecipeCard() {
 
     const [someState, setSomeState] = useState(false);
-
+    const [recipePicked, setRecipePicked] = useState(false);
 
     const [searchState, setsearchState] = useState(false);
 
@@ -28,7 +29,6 @@ function RecipeCard() {
     }
 
     )
-
     const renderData = () => {
         if (data) {
             return <div>
@@ -42,7 +42,6 @@ function RecipeCard() {
             return <div></div>;
         }
     }
-
 
     const options = [
         {
@@ -88,34 +87,6 @@ function RecipeCard() {
 
     ]
 
-
-    // function search(value) {
-    //     if (searchState) {
-
-    //         fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=3b8c9269a77c431a8b604b2ada505fef `)
-    //             .then(response => {
-    //                 return response.json()
-    //             })
-    //             .then(function (response) {
-
-
-    //                 console.log(response)
-    //                 return 1
-
-
-
-    //             }
-    //             )
-    //     }
-    //     else {
-
-    //         return <div></div>
-
-    //     }
-
-
-    // }
-
     function searchCuisine(value) {
         // GET request using fetch with error handling
         fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52`)
@@ -129,17 +100,23 @@ function RecipeCard() {
                     return Promise.reject(error);
                 }
                 console.log(result);
-                let recipe = result.results[0].title  
+                let recipe = result.results[0].title
                 console.log(recipe)
-                return recipe
-                
+                return function () {
+                    return recipe
+                }
+
             })
             .catch(error => {
 
                 console.error('There was an error!', error);
             });
     }
-    // let test = recipe;
+    useEffect(() => {
+        let test = searchCuisine()
+        console.log(test);
+    }, searchCuisine)
+
     return (
 
         <div>
@@ -147,7 +124,7 @@ function RecipeCard() {
                 <Cascader options={options} style={{ width: 400 }} placeholder="Please select" onChange={searchCuisine} />
                 <div>
                     Test
-                    {/* {test} */}
+                    
                 </div>
             </Card>
 
