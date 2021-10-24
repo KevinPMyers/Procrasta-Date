@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import { Button, Radio } from 'antd';
+import Fork from '../assets/ForkedUp.png'
 
 function LandingPage() {
 
@@ -7,10 +8,8 @@ function LandingPage() {
     return (
 
         <div className="LandingPage">
-            <p>
-                So... you Forked Up
-            </p>
-            <p> We got you</p>
+            <img className="forked-up" src={Fork}></img>
+            <p> We got you! Sign in and follow the steps to get things cookin!</p>
             <Button size="large" className="LandingButton" href="/login-page">Login/Sign Up</Button>
 
         </div >
