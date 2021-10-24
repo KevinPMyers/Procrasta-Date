@@ -8,8 +8,8 @@ const resolvers = {
         me: async (parent, args, context) => {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
-                .select('-password')
-                .populate('dates');
+                    .select('-password')
+                    .populate('dates');
 
                 return userData;
             }
@@ -19,15 +19,15 @@ const resolvers = {
         // get all users
         users: async () => {
             return User.find()
-            .select('-password')
-            .populate('dates');
+                .select('-password')
+                .populate('dates');
 
         },
         // get user by username
         user: async (parent, { username }) => {
             return User.findOne({ username })
-            .select('-password')
-            .populate('dates');
+                .select('-password')
+                .populate('dates');
         },
         dates: async (parent, { username }) => {
             const params = username ? { username } : {};
@@ -67,7 +67,7 @@ const resolvers = {
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { dates: date._id} },
+                    { $push: { dates: date._id } },
                     { new: true }
                 );
 

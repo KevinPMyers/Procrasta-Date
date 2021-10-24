@@ -166,6 +166,8 @@ function RecipeCard() {
                     `${e.step}  `
                 )))
 
+                let id = response.results[i].id
+
 
 
 
