@@ -15,9 +15,10 @@ function RecipeCard() {
 
     const [steps, setSteps] = useState([])
     const [getID, setGetID] = useState('');
-    const [diet, setDiet] = useState("")
+
     const [getIngredients, setGetIngredients] = useState([]);
-    const [music, setMusic] = useState([''])
+    const [music, setMusic] = useState('')
+    const [fact, setFact] = useState('')
 
 
     const random = () => {
@@ -150,20 +151,62 @@ function RecipeCard() {
     function searchCuisine(value) {
         // GET request using fetch with error handling
 
-        console.log(value)
-
+        //Swtich Statement to Assign the correct useState to music using setMusic
         switch (value[0]) {
             case 'French':
-                setMusic('0FGVlHSANxoLzSBGorochB')
-                console.log("hi")
+                setMusic("https://open.spotify.com/embed/artist/21lWVwQxrCGHedpvicoxbr")
+                break;
+            case 'Italian':
+                setMusic('https://open.spotify.com/embed/artist/7GgQPPfphmWHl4LUSD4fcU')
+                break;
+            case 'American':
+                setMusic('https://open.spotify.com/embed/playlist/1ZH9ObToPQQATnLXNnvu4C')
+                break;
+            case 'Caribbean':
+                setMusic('https://open.spotify.com/embed/playlist/0IL63l7iDIaEIBSGnpgNJK')
+                break;
+            case 'Greek':
+                setMusic('https://open.spotify.com/embed/album/0Y9XGeIynbLRRah2SSjf9Y?si=Vv0m4eAiT6iwbTt63vKQ2w')
+                break;
+            case 'Chinese':
+                setMusic('https://open.spotify.com/embed/album/6M3PJFvzdQcM6uvfqeTzAf?si=fG3u5EsGRkqBUCiSYwwS4A')
+                break;
+            case 'Indian':
+                setMusic('https://open.spotify.com/embed/album/3QqypECfGRIXY2uC7yYJDp?si=QcjGe4IQQZ62xoE1upGGJA')
+                break;
+            case 'Mediterranean':
+                setMusic('https://open.spotify.com/embed/album/5pdMdpF9SSdzzEMXyE0Zb4?si=0pk0Pp6bSk2zmOa7rEeZYA')
+                break;
+            case 'European':
+                setMusic('https://open.spotify.com/embed/album/6Yo2yr1t3tv3wWOLWJBhF4?si=kdwek9rKQ96LpiXpJ3KhBQ')
+                break;
+            case 'Japanese':
+                setMusic('https://open.spotify.com/embed/playlist/4TyimJNmi0T8khXSHULYui')
+                break;
+            case 'Mexican':
+                setMusic('https://open.spotify.com/embed/playlist/0QYKTxUZxxUv5pgMCwQITC')
+                break;
+            case 'Thai':
+                setMusic('https://open.spotify.com/embed/playlist/0kpYdO6ts00Cog2wIbdmZd')
+                break;
+            case 'German':
+                setMusic('https://open.spotify.com/embed/playlist/46sOO9xULLbpTWyIeZkZDE')
+                break;
+            case 'Southern':
+                setMusic('https://open.spotify.com/embed/playlist/3Bgs8meDQxHuTrdiqUGZGR')
+                break;
+            case 'Middle Eastern':
+                setMusic('https://open.spotify.com/embed/playlist/43R9R4yzfVKP8UPXyKXaLd')
                 break;
 
             default:
                 setMusic('')
+
+
         }
 
 
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13&addRecipeInformation=true`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13&addRecipeInformation=true&number=30&type=main course`)
             .then(response => {
                 return response.json()
             })
@@ -191,6 +234,14 @@ function RecipeCard() {
 
             }
             )
+
+        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=01745a17a5c54e01bae3378020a94df6").then(response => {
+            return response.json()
+        })
+            .then(response => {
+                console.log(response.text)
+                setFact(response.text)
+            })
     }
 
     function searchIngredients() {
@@ -209,28 +260,17 @@ function RecipeCard() {
 
                 setGetIngredients(response.extendedIngredients.map((ingredient) => (
 
-                    `${ingredient.name}` )))
+                    `${ingredient.name}`)))
             })
 
     }
 
     function searchRandom(value) {
         // GET request using fetch with error handling
-
-        console.log(value)
-
-        switch (value[0]) {
-            case 'French':
-                setMusic('0FGVlHSANxoLzSBGorochB')
-                console.log("hi")
-                break;
-
-            default:
-                setMusic('')
-        }
+        setMusic("https://open.spotify.com/embed/playlist/5RhyxlHe1yEFFCGDTHhcwW")
 
 
-        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=01745a17a5c54e01bae3378020a94df6`)
+        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=01745a17a5c54e01bae3378020a94df6&type=main course`)
             .then(response => {
                 return response.json()
             })
@@ -253,15 +293,24 @@ function RecipeCard() {
 
             }
             )
+
+        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=01745a17a5c54e01bae3378020a94df6").then(response => {
+            return response.json()
+        })
+            .then(response => {
+                console.log(response.text)
+                setFact(response.text)
+            })
+
     }
 
     // rewrites the array, adding a comma onto the end of each ingredient
-    var style = getIngredients.reduce(function(a, b) {
+    var style = getIngredients.reduce(function (a, b) {
         return a.concat(b).concat(', ');
     }, []).slice(0, -1);
 
-    
-    
+
+
     return (
 
         <div>
@@ -273,18 +322,25 @@ function RecipeCard() {
 
 
             {
+
                 !results ? <div></div> :
-                    <Card onLoad={searchIngredients} hoverable={true} className="returned-recipe"  >
+                    <Card style={{ width: 700 }} onLoad={searchIngredients} hoverable={true} className="returned-recipe"  >
                         <h3> {results.title} </h3>
                         <img className="food-pic" src={results.image}></img>
                         <p className="ready-time"> Ready in {results.time} minutes!</p>
                         <p className="ingredient-title"> Ingredients: </p>
-                        <p className="ingredients"> {style}</p>
+                        <p className="ingredients"> {getIngredients}</p>
                         <p className="steps-title"> Steps: </p>
                         <p className="instructions">  {steps}   </p>
-                        {music}
+                        <p className="ingredient-title"> Your Music Selection: </p>
+                        <iframe src={music} width="600" height="420" frameBorder="0" className="spotify-playlist" allowtransparency="true" play="true" allow="encrypted-media"></iframe>
+                        <p className="food-fact-title"> Icebreaker Food Fact: </p>
+                        <p className="food-fact">  {fact}   </p>
                     </Card>
+
             }
+
+
 
             <Button className="help-me" onClick={searchRandom}>
                 No Time, Just Help!!
