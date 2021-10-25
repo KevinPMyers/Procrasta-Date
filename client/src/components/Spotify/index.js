@@ -6,7 +6,7 @@ function SpotifyCard() {
 
     return (
         <div>
-            <Card title="Spotify" className="Spotify" hoverable={true} style={{ width: 700 }}>
+            <Card title="Spotify" className="spotify" hoverable={true}>
                 <p>Card content</p>
                 <p>Card content</p>
                 <p>Card content</p>

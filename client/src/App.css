@@ -70,23 +70,23 @@ header {
     border: 1px solid #002364;
 }
 
-.Spotify {
- 
+.spotify {
+  width: 700px;
   margin-bottom: 25px;
   border: 3px solid #b9227f;;
   border-radius: 5px;
 }
 
-.Recipe{
-  
-  border: 3px solid #b9227f;;
- border-radius: 5px;
+.recipe{
+width: 700px;  
+border: 3px solid #b9227f;;
+border-radius: 5px;
 }
 
 .returned-recipe{
-  
-   padding: 10px 20px;
-   margin-top: 50px;
+  width: 700px;
+  padding: 10px 20px;
+  margin-top: 50px;
   border: 3px solid #b9227f;;
   border-radius: 5px;
 }
@@ -172,5 +172,44 @@ font-weight: bold;
   font-size: 21px;
   font-weight: 600;
   margin-bottom: -10px;
+}
+
+@media screen and (max-width: 800px) {
+  .recipe {
+    width: 500px;
+  }
+  .spotify {
+    width: 500px;
+  }
+  .returned-recipe {
+    width: 500px;
+  }
+}
+@media screen and (max-width: 540px) {
+  .recipe {
+    width: 350px;
+  }
+  .spotify {
+    width: 350px;
+  }
+  .returned-recipe {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .recipe {
+    width: 250px;
+    margin:auto;
+  }
+  .spotify {
+    width: 250px;
+  }
+  .returned-recipe {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    
+  }
 }
 

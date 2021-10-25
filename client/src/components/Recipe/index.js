@@ -265,8 +265,8 @@ function RecipeCard() {
     return (
 
         <div>
-            <Card title="Recipe Select" className="Recipe" hoverable={true} style={{ width: 700 }}>
-                <Cascader options={options} size="large" style={{ width: 400 }} placeholder="Select a Dish Type!" onChange={searchCuisine} />
+            <Card title="Recipe Select" className="recipe" hoverable={true}>
+                <Cascader options={options} size="large" placeholder="Select a Dish Type!" onChange={searchCuisine} />
                 <div></div>
             </Card >
 
@@ -274,7 +274,7 @@ function RecipeCard() {
 
             {
                 !results ? <div></div> :
-                    <Card style={{ width: 700 }} onLoad={searchIngredients} hoverable={true} className="returned-recipe"  >
+                    <Card onLoad={searchIngredients} hoverable={true} className="returned-recipe"  >
                         <h3> {results.title} </h3>
                         <img className="food-pic" src={results.image}></img>
                         <p className="ready-time"> Ready in {results.time} minutes!</p>
