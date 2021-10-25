@@ -23,7 +23,7 @@ const userSchema = new Schema(
         },
         dates: [{
             type: Schema.Types.ObjectId,
-            ref: 'Date'
+            ref: 'MyDate'
         }]
     }
 );

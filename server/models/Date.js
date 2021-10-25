@@ -31,6 +31,6 @@ const dateSchema = new Schema({
 
 });
 
-const Date = model('Date', dateSchema);
+const MyDate = model('Date', dateSchema);
 
-module.exports = Date;
+module.exports = MyDate;

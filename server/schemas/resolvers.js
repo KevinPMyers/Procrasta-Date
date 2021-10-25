@@ -14,7 +14,7 @@ const resolvers = {
                 return userData;
             }
 
-            throw new AuthenticationError('Not logged in.');
+            throw new AuthenticationError('Not logged in');
         },
         // get all users
         users: async () => {
@@ -73,7 +73,7 @@ const resolvers = {
 
                 return date;
             }
-            throw new AuthenticationError('You must be logged in.');
+            throw new AuthenticationError('You must be logged in');
         }
     }
 };
