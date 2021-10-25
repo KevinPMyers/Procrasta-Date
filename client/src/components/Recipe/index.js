@@ -17,7 +17,7 @@ function RecipeCard() {
     const [getID, setGetID] = useState('');
     const [diet, setDiet] = useState("")
     const [getIngredients, setGetIngredients] = useState([]);
-    const [music, setMusic] = useState([''])
+    const [music, setMusic] = useState('')
 
 
     const random = () => {
@@ -171,10 +171,16 @@ function RecipeCard() {
 
         console.log(value)
 
+
         switch (value[0]) {
             case 'French':
-                setMusic('0FGVlHSANxoLzSBGorochB')
-                console.log("hi")
+                setMusic("https://open.spotify.com/embed/artist/21lWVwQxrCGHedpvicoxbr")
+                break;
+            case 'Italian':
+                setMusic('https://open.spotify.com/embed/artist/7GgQPPfphmWHl4LUSD4fcU')
+                break;
+            case 'American':
+                setMusic('4uiRNNbmm1erAgfPvt5G75')
                 break;
 
             default:
@@ -182,7 +188,7 @@ function RecipeCard() {
         }
 
 
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13&addRecipeInformation=true`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13&addRecipeInformation=true&number=30`)
             .then(response => {
                 return response.json()
             })
@@ -233,18 +239,7 @@ function RecipeCard() {
 
     function searchRandom(value) {
         // GET request using fetch with error handling
-
-        console.log(value)
-
-        switch (value[0]) {
-            case 'French':
-                setMusic('0FGVlHSANxoLzSBGorochB')
-                console.log("hi")
-                break;
-
-            default:
-                setMusic('')
-        }
+        setMusic("https://open.spotify.com/embed/playlist/5RhyxlHe1yEFFCGDTHhcwW")
 
 
         fetch(`https://api.spoonacular.com/recipes/random/?apiKey=01745a17a5c54e01bae3378020a94df6`)
@@ -276,27 +271,31 @@ function RecipeCard() {
     return (
 
         <div>
-            <Card title="Recipe Select" className="Recipe" hoverable={true} style={{ width: 700 }}>
-                <Cascader options={options} size="large" style={{ width: 400 }} placeholder="Select a Dish Type!" onChange={searchCuisine} />
+            <Card title="Find a Recipe!" className="Recipe" hoverable={true} style={{ width: 700 }}>
+                <Cascader className="dropdown" options={options} size="large" style={{ width: 400 }} placeholder="Select a Dish Type!" onChange={searchCuisine} />
                 <div></div>
             </Card >
 
 
+            <>
+                {
 
-            {
-                !results ? <div></div> :
-                    <Card style={{ width: 700 }} onLoad={searchIngredients} hoverable={true} className="returned-recipe"  >
-                        <h3> {results.title} </h3>
-                        <img className="food-pic" src={results.image}></img>
-                        <p className="ready-time"> Ready in {results.time} minutes!</p>
-                        <p className="ingredient-title"> Ingredients: </p>
-                        <p className="ingredients"> {getIngredients}</p>
-                        <p className="steps-title"> Steps: </p>
-                        <p className="instructions">  {steps}   </p>
-                        {music}
-                    </Card>
-            }
+                    !results ? <div></div> :
+                        <Card style={{ width: 700 }} onLoad={searchIngredients} hoverable={true} className="returned-recipe"  >
+                            <h3> {results.title} </h3>
+                            <img className="food-pic" src={results.image}></img>
+                            <p className="ready-time"> Ready in {results.time} minutes!</p>
+                            <p className="ingredient-title"> Ingredients: </p>
+                            <p className="ingredients"> {getIngredients}</p>
+                            <p className="steps-title"> Steps: </p>
+                            <p className="instructions">  {steps}   </p>
+                            <p className="ingredient-title"> Your Music Selection: </p>
+                            <iframe src={music} width="600" height="420" frameborder="0" allowtransparency="true" play="true" allow="encrypted-media"></iframe>
+                        </Card>
 
+
+                }
+            </>
             <Button className="help-me" onClick={searchRandom}>
                 No Time, Just Help!!
             </Button>
