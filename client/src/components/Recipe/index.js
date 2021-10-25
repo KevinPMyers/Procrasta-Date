@@ -50,25 +50,6 @@ function RecipeCard() {
     )
     console.log(data)
 
-    // const renderData = () => {
-    //     if (data) {
-    //         return <Card>
-    //             <p>
-    //                 {data && data.recipes[0].title}
-    //             </p>
-
-    //             <img className="food-pic" src={data && data.recipes[0].image}></img>
-    //             <p className="ready-time"> Ready in {data.recipes[0].readyInMinutes} minutes!</p>
-    //             <p className="ingredient-title"> Ingredients: </p>
-    //             {/* <p className="ingredients"> {getIngredients}</p>
-    //             <p className="steps-title"> Steps: </p>
-    //             <p className="instructions">  {steps}   </p>
-    //             {music} */}
-    //         </Card>
-    //     } else {
-    //         return <div></div>;
-    //     }
-    // }
 
     const options = [
         {
@@ -211,6 +192,8 @@ function RecipeCard() {
                     `${e.step}  `
                 )))
 
+                let id = response.results[i].id
+
 
             }
             )
@@ -232,7 +215,7 @@ function RecipeCard() {
 
                 setGetIngredients(response.extendedIngredients.map((ingredient) => (
 
-                    `${ingredient.name} `)))
+                    `${ingredient.name}`)))
             })
 
     }
@@ -267,35 +250,42 @@ function RecipeCard() {
             )
     }
 
-    console.log(getIngredients);
+    // rewrites the array, adding a comma onto the end of each ingredient
+    var style = getIngredients.reduce(function (a, b) {
+        return a.concat(b).concat(', ');
+    }, []).slice(0, -1);
+
+
+
     return (
 
         <div>
-            <Card title="Find a Recipe!" className="Recipe" hoverable={true} style={{ width: 700 }}>
-                <Cascader className="dropdown" options={options} size="large" style={{ width: 400 }} placeholder="Select a Dish Type!" onChange={searchCuisine} />
+            <Card title="Recipe Select" className="recipe" hoverable={true}>
+                <Cascader options={options} size="large" placeholder="Select a Dish Type!" onChange={searchCuisine} />
                 <div></div>
             </Card >
 
 
-            <>
-                {
 
-                    !results ? <div></div> :
-                        <Card style={{ width: 700 }} onLoad={searchIngredients} hoverable={true} className="returned-recipe"  >
-                            <h3> {results.title} </h3>
-                            <img className="food-pic" src={results.image}></img>
-                            <p className="ready-time"> Ready in {results.time} minutes!</p>
-                            <p className="ingredient-title"> Ingredients: </p>
-                            <p className="ingredients"> {getIngredients}</p>
-                            <p className="steps-title"> Steps: </p>
-                            <p className="instructions">  {steps}   </p>
-                            <p className="ingredient-title"> Your Music Selection: </p>
-                            <iframe src={music} width="600" height="420" frameborder="0" allowtransparency="true" play="true" allow="encrypted-media"></iframe>
-                        </Card>
+            {
+
+                !results ? <div></div> :
+                    <Card style={{ width: 700 }} onLoad={searchIngredients} hoverable={true} className="returned-recipe"  >
+                        <h3> {results.title} </h3>
+                        <img className="food-pic" src={results.image}></img>
+                        <p className="ready-time"> Ready in {results.time} minutes!</p>
+                        <p className="ingredient-title"> Ingredients: </p>
+                        <p className="ingredients"> {getIngredients}</p>
+                        <p className="steps-title"> Steps: </p>
+                        <p className="instructions">  {steps}   </p>
+                        <p className="ingredient-title"> Your Music Selection: </p>
+                        <iframe src={music} width="600" height="420" frameborder="0" allowtransparency="true" play="true" allow="encrypted-media"></iframe>
+                    </Card>
+
+            }
 
 
-                }
-            </>
+
             <Button className="help-me" onClick={searchRandom}>
                 No Time, Just Help!!
             </Button>
