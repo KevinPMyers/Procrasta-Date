@@ -7,7 +7,7 @@ function RecipePage() {
     return (
         <div>
             <div className="card-container">
-                <SpotifyCard />
+
                 <RecipeCard />
             </div>
             <Drawer />

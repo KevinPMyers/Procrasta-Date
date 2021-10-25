@@ -2,6 +2,7 @@
 
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -42,13 +43,18 @@
 header {
   font-size: 50px;
   font-weight: 600;
+  background-color: #7EBCE6;
+}
+
+.ant-layout {
+  background-color: #7EBCE6;
 }
 
 .header-title{
   color: #b9227f;
 }
 .header-title:hover {
-  color: #ec4aae;;
+  color: #e658af;;
 }
 
 .forked-up{
@@ -70,23 +76,24 @@ header {
     border: 1px solid #002364;
 }
 
-.Spotify {
- 
+.spotify {
+  width: 700px;
   margin-bottom: 25px;
-  border: 3px solid #b9227f;;
+  border: 4px solid #8980F5;;
   border-radius: 5px;
 }
 
-.Recipe{
-  
-  border: 3px solid #b9227f;;
- border-radius: 5px;
+.recipe{
+width: 700px;  
+border: 3px solid #b9227f;;
+border-radius: 5px;
 }
 
+
 .returned-recipe{
-   margin-left: 30px;
-   padding: 10px 20px;
-   margin-top: 50px;
+  width: 700px;
+  padding: 10px 20px;
+  margin-top: 50px;
   border: 3px solid #b9227f;;
   border-radius: 5px;
 }
@@ -104,7 +111,7 @@ border-radius: 5px;
 }
 
 .returned-recipe:hover img{
-  border: 4px solid #b9227f;
+  border: 4px solid #8980F5;
 border-radius: 5px;
 transition-duration: 0.2s;
 }
@@ -123,15 +130,19 @@ transition-duration: 0.2s;
   margin-left: 200px;
   margin-right: 200px;
   color: #f3f3f3;
-  background-color: #ff07ac;
+  background-color: #8980F5;
   border-radius: 5px;
 }
 
-
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Noto+Sans&display=swap');
 .instructions{
   margin-top: 20px;
   font-size: 18px;
   font-weight: 600;
+  font-family: 'Lora', serif;
+  font-family: 'Noto Sans', sans-serif;
+  border-bottom: 2px solid #282c34;
+  padding-bottom: 20px ;
 }
 
 .help-me{
@@ -149,3 +160,84 @@ transition-duration: 0.2s;
     color: rgb(245, 245, 245);
     border: 1px solid #002364;
 }
+
+.ingredient-title{
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.ingredients {
+margin-top: -10px;
+letter-spacing: 2px;
+font-size: 15px;
+border-bottom: 2px solid #282c34;
+padding-bottom: 20px;
+font-family: 'Lora', serif;
+font-family: 'Noto Sans', sans-serif;
+font-weight: bold;
+}
+
+.spotify-playlist{
+  border-bottom: 2px solid #282c34;
+  padding-bottom: 25px;
+}
+
+.food-fact-title {
+  padding-top: 15px ;
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.food-fact {
+font-size: 20px;
+padding-bottom: 5px;
+font-family: 'Lora', serif;
+font-family: 'Noto Sans', sans-serif;
+font-weight: bold;
+}
+
+.steps-title{
+  font-size: 21px;
+  font-weight: 600;
+  margin-bottom: -10px;
+}
+
+@media screen and (max-width: 800px) {
+  .recipe {
+    width: 500px;
+  }
+  .spotify {
+    width: 500px;
+  }
+  .returned-recipe {
+    width: 500px;
+  }
+}
+@media screen and (max-width: 540px) {
+  .recipe {
+    width: 350px;
+  }
+  .spotify {
+    width: 350px;
+  }
+  .returned-recipe {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .recipe {
+    width: 250px;
+    margin:auto;
+  }
+  .spotify {
+    width: 250px;
+  }
+  .returned-recipe {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    
+  }
+}
+
