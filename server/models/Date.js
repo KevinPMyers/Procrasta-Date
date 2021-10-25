@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
-// const recipeSchema = require('./Recipe');
-// const musicSchema = require('./Music')
+const recipeSchema = require('./Recipe');
+const musicSchema = require('./Music')
 
 const dateSchema = new Schema({
     datename: {
@@ -13,21 +13,21 @@ const dateSchema = new Schema({
         default: Date.now
     },
 
-    username: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }],
-    recipes: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Recipe'
-    }],
+    // username: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User'
+    // }],
+    // recipes: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Recipe'
+    // }],
     // or would this be better
-    // recipes: [recipeSchema]
-    music: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Music'
-    }]
-    // music: [musicSchema]
+    recipes: [recipeSchema],
+    // music: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Music'
+    // }]
+    music: [musicSchema]
 
 });
 

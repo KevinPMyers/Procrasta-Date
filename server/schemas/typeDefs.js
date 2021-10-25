@@ -5,7 +5,7 @@ const typeDefs = gql`
         _id: ID
         username: String
         email: String
-        dates: [Date]
+        dates: [MyDate]
     }
 
     type MyDate {
@@ -24,14 +24,14 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
-        dates(username: Schema.Types.ObjectId): [Date]
-        date(_id: ID!): Date
+        dates(username: Schema.Types.ObjectId): [MyDate]
+        date(_id: ID!): MyDate
     }
 
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
-        addDate(datename: String!): Date
+        addDate(datename: String!): MyDate
     }
 `;
 
