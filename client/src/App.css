@@ -127,11 +127,13 @@ transition-duration: 0.2s;
   border-radius: 5px;
 }
 
-
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Noto+Sans&display=swap');
 .instructions{
   margin-top: 20px;
   font-size: 18px;
   font-weight: 600;
+  font-family: 'Lora', serif;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 .help-me{
@@ -155,14 +157,15 @@ transition-duration: 0.2s;
   font-weight: 600;
 }
 
-
 .ingredients {
 margin-top: -10px;
 letter-spacing: 2px;
-font-weight: 650;
 font-size: 15px;
 border-bottom: 2px solid #282c34;
 padding-bottom: 20px;
+font-family: 'Lora', serif;
+font-family: 'Noto Sans', sans-serif;
+font-weight: bold;
 }
 
 .steps-title{
