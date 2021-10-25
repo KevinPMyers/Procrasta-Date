@@ -14,8 +14,10 @@ function RecipeCard() {
     const [results, setResults] = useState("")
 
     const [steps, setSteps] = useState([])
-    const [getIngredients, setGetIngredients] = useState('');
+    const [getID, setGetID] = useState('');
     const [diet, setDiet] = useState("")
+    const [getIngredients, setGetIngredients] = useState([]);
+    const [music, setMusic] = useState([''])
 
 
     const random = () => {
@@ -39,101 +41,124 @@ function RecipeCard() {
     }
 
 
-    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=346d76812ee94c709e0825774f1e1d52", {
+    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13", {
         depends: [someState] // don't call request, if someState: false
 
     }
 
+
     )
+    console.log(data)
 
-    const renderData = () => {
-        if (data) {
-            return <div>
-                <p>
-                    {data && data.recipes[0].title}
-                </p>
+    // const renderData = () => {
+    //     if (data) {
+    //         return <Card>
+    //             <p>
+    //                 {data && data.recipes[0].title}
+    //             </p>
 
-                <img src={data && data.recipes[0].image}></img>
-            </div>
-        } else {
-            return <div></div>;
-        }
-    }
+    //             <img className="food-pic" src={data && data.recipes[0].image}></img>
+    //             <p className="ready-time"> Ready in {data.recipes[0].readyInMinutes} minutes!</p>
+    //             <p className="ingredient-title"> Ingredients: </p>
+    //             {/* <p className="ingredients"> {getIngredients}</p>
+    //             <p className="steps-title"> Steps: </p>
+    //             <p className="instructions">  {steps}   </p>
+    //             {music} */}
+    //         </Card>
+    //     } else {
+    //         return <div></div>;
+    //     }
+    // }
 
     const options = [
         {
             value: 'French',
             label: 'French',
+            playlist: '0FGVlHSANxoLzSBGorochB'
 
         },
         {
             value: 'Italian',
             label: 'Italian',
+            playlist: '37i9dQZF1DWT1R6bXL4dyW'
 
         },
         {
             value: 'American',
             label: 'American',
+            playlist: '4uiRNNbmm1erAgfPvt5G75'
 
         },
         {
             value: 'Caribbean',
             label: 'Caribbean',
+            playlist: '1xZ9Ijqvjte3NSTD592z70'
 
         },
         {
             value: 'Greek',
             label: 'Greek',
+            playlist: '3Nxq6nGhQMHtKdVrS3LCZ6'
 
         },
         {
             value: 'Chinese',
             label: 'Chinese',
+            playlist: '19S6EyhjFSF7BcFd0tjcVP'
 
         },
         {
             value: 'Indian',
             label: 'Indian',
+            playlist: '6mwx8P8cxai9ksljpdPc6e'
 
         },
         {
             value: 'Mediterranean',
             label: 'Mediterranean',
+            playlist: '1pKpHwwvfOjTh7PBxVV15Q'
 
         },
         {
             value: 'European',
             label: 'European',
+            playlist: '4PcR5ahD71QfQEk4DJPian'
 
         },
         {
             value: 'Japanese',
             label: 'Japanese',
+            playlist: '37i9dQZF1EIflvhyG0AA3D'
 
         },
         {
             value: 'Mexican',
             label: 'Mexican',
+            playlist: '3tkMu5P1fyWKF0jilTLaHU'
 
         },
         {
             value: 'Thai',
             label: 'Thai',
+            playlist: '0kpYdO6ts00Cog2wIbdmZd'
 
         },
         {
             value: 'German',
             label: 'German',
+            playlist: '2AnmygZrJjMHZehRhXgrls'
 
         },
         {
             value: 'Southern',
             label: 'Southern',
+            playlist: '0zaEuebc8oZQPPpXuozFxX'
 
         },
         {
             value: 'Middle Eastern',
             label: 'Middle Eastern',
+            playlist: '43R9R4yzfVKP8UPXyKXaLd'
 
         },
 
@@ -144,8 +169,20 @@ function RecipeCard() {
     function searchCuisine(value) {
         // GET request using fetch with error handling
 
+        console.log(value)
 
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52&addRecipeInformation=true`)
+        switch (value[0]) {
+            case 'French':
+                setMusic('0FGVlHSANxoLzSBGorochB')
+                console.log("hi")
+                break;
+
+            default:
+                setMusic('')
+        }
+
+
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13&addRecipeInformation=true`)
             .then(response => {
                 return response.json()
             })
@@ -160,7 +197,7 @@ function RecipeCard() {
                     image: response.results[i].image,
                     time: response.results[i].readyInMinutes
                 })
-                setGetIngredients(
+                setGetID(
                     response.results[i].id
                 )
 
@@ -168,7 +205,7 @@ function RecipeCard() {
                     `${e.step}  `
                 )))
 
-
+                let id = response.results[i].id
 
 
             }
@@ -176,19 +213,65 @@ function RecipeCard() {
     }
 
     function searchIngredients() {
-        fetch(`https://api.spoonacular.com/recipes/${getIngredients}/information?includeNutrition=false&apiKey=346d76812ee94c709e0825774f1e1d52`)
-        .then(response => {
-            return response.json()
-        })
-        .then(response => {
-            console.log(response)
-            console.log(response.extendedIngredients)
-            console.log(response.extendedIngredients.map((ingredient) => (
-                `${ingredient.name}`
-            )))
-            setGetIngredients(response.extendedIngredients.map((ingredient) => (
-                `${ingredient.name}`)))
-        })
+        fetch(`https://api.spoonacular.com/recipes/${getID}/information?includeNutrition=false&apiKey=01745a17a5c54e01bae3378020a94df6`)
+            .then(response => {
+                return response.json()
+            })
+            .then(response => {
+                console.log(response)
+                console.log(response.extendedIngredients)
+                console.log(response.extendedIngredients.map((ingredient) => (
+                    `${ingredient.name}`
+                )))
+
+
+
+                setGetIngredients(response.extendedIngredients.map((ingredient) => (
+
+                    `${ingredient.name} `)))
+            })
+
+    }
+
+    function searchRandom(value) {
+        // GET request using fetch with error handling
+
+        console.log(value)
+
+        switch (value[0]) {
+            case 'French':
+                setMusic('0FGVlHSANxoLzSBGorochB')
+                console.log("hi")
+                break;
+
+            default:
+                setMusic('')
+        }
+
+
+        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=01745a17a5c54e01bae3378020a94df6`)
+            .then(response => {
+                return response.json()
+            })
+            .then(response => {
+                console.log(response)
+                // console.log(response.results[0].id)
+                setResults({
+                    title: response.recipes[0].title,
+                    image: response.recipes[0].image,
+                    time: response.recipes[0].readyInMinutes
+                })
+                setGetID(
+                    response.recipes[0].id
+                )
+
+                setSteps(response.recipes[0].analyzedInstructions[0].steps.map((e) => (
+                    `${e.step}  `
+                )))
+
+
+            }
+            )
     }
 
     console.log(getIngredients);
@@ -197,27 +280,28 @@ function RecipeCard() {
         <div>
             <Card title="Recipe Select" className="Recipe" hoverable={true} style={{ width: 700 }}>
                 <Cascader options={options} size="large" style={{ width: 400 }} placeholder="Select a Dish Type!" onChange={searchCuisine} />
-                <div>{searchIngredients()}</div>
+                <div></div>
             </Card >
 
 
 
             {
                 !results ? <div></div> :
-                    <Card style={{ width: 700 }} hoverable={true} className="returned-recipe" >
+                    <Card style={{ width: 700 }} onLoad={searchIngredients} hoverable={true} className="returned-recipe"  >
                         <h3> {results.title} </h3>
                         <img className="food-pic" src={results.image}></img>
                         <p className="ready-time"> Ready in {results.time} minutes!</p>
-                        <p className="instructions">  {steps}   </p>
                         <p className="ingredient-title"> Ingredients: </p>
                         <p className="ingredients"> {getIngredients}</p>
+                        <p className="steps-title"> Steps: </p>
+                        <p className="instructions">  {steps}   </p>
+                        {music}
                     </Card>
             }
 
-            <Button className="help-me" onClick={random}>
+            <Button className="help-me" onClick={searchRandom}>
                 No Time, Just Help!!
             </Button>
-            {renderData()}
 
 
 

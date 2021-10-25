@@ -13,7 +13,7 @@ const dateSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    
+
     username: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
@@ -29,7 +29,7 @@ const dateSchema = new Schema({
         ref: 'Music'
     }]
     // music: [musicSchema]
-    
+
 });
 
 const Date = model('Date', dateSchema);

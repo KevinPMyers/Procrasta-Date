@@ -41,6 +41,7 @@
 
 header {
   font-size: 50px;
+  font-weight: 600;
 }
 
 .header-title{
@@ -83,7 +84,7 @@ header {
 }
 
 .returned-recipe{
-   margin-left: 30px;
+  
    padding: 10px 20px;
    margin-top: 50px;
   border: 3px solid #b9227f;;
@@ -148,3 +149,25 @@ transition-duration: 0.2s;
     color: rgb(245, 245, 245);
     border: 1px solid #002364;
 }
+
+.ingredient-title{
+  font-size: 21px;
+  font-weight: 600;
+}
+
+
+.ingredients {
+margin-top: -10px;
+letter-spacing: 2px;
+font-weight: 650;
+font-size: 15px;
+border-bottom: 2px solid #282c34;
+padding-bottom: 20px;
+}
+
+.steps-title{
+  font-size: 21px;
+  font-weight: 600;
+  margin-bottom: -10px;
+}
+
