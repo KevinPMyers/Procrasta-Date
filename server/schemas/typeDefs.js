@@ -8,7 +8,7 @@ const typeDefs = gql`
         dates: [Date]
     }
 
-    type Date {
+    type MyDate {
         _id: ID
         createdAt: String
         username: Schema.Types.ObjectId
