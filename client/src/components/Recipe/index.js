@@ -14,8 +14,10 @@ function RecipeCard() {
     const [results, setResults] = useState("")
 
     const [steps, setSteps] = useState([])
-    const [getIngredients, setGetIngredients] = useState('');
+    const [getID, setGetID] = useState('');
     const [diet, setDiet] = useState("")
+    const [getIngredients, setGetIngredients] = useState([]);
+    const [music, setMusic] = useState([''])
 
 
     const random = () => {
@@ -39,26 +41,15 @@ function RecipeCard() {
     }
 
 
-    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=346d76812ee94c709e0825774f1e1d52", {
+    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13", {
         depends: [someState] // don't call request, if someState: false
 
     }
 
+
     )
+    console.log(data)
 
-    const renderData = () => {
-        if (data) {
-            return <div>
-                <p>
-                    {data && data.recipes[0].title}
-                </p>
-
-                <img src={data && data.recipes[0].image}></img>
-            </div>
-        } else {
-            return <div></div>;
-        }
-    }
 
     const options = [
         {
@@ -159,8 +150,20 @@ function RecipeCard() {
     function searchCuisine(value) {
         // GET request using fetch with error handling
 
+        console.log(value)
 
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52&addRecipeInformation=true`)
+        switch (value[0]) {
+            case 'French':
+                setMusic('0FGVlHSANxoLzSBGorochB')
+                console.log("hi")
+                break;
+
+            default:
+                setMusic('')
+        }
+
+
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13&addRecipeInformation=true`)
             .then(response => {
                 return response.json()
             })
@@ -175,7 +178,7 @@ function RecipeCard() {
                     image: response.results[i].image,
                     time: response.results[i].readyInMinutes
                 })
-                setGetIngredients(
+                setGetID(
                     response.results[i].id
                 )
 
@@ -186,55 +189,106 @@ function RecipeCard() {
                 let id = response.results[i].id
 
 
+            }
+            )
+    }
+
+    function searchIngredients() {
+        fetch(`https://api.spoonacular.com/recipes/${getID}/information?includeNutrition=false&apiKey=01745a17a5c54e01bae3378020a94df6`)
+            .then(response => {
+                return response.json()
+            })
+            .then(response => {
+                console.log(response)
+                console.log(response.extendedIngredients)
+                console.log(response.extendedIngredients.map((ingredient) => (
+                    `${ingredient.name}`
+                )))
+
+
+
+                setGetIngredients(response.extendedIngredients.map((ingredient) => (
+
+                    `${ingredient.name}` )))
+            })
+
+    }
+
+    function searchRandom(value) {
+        // GET request using fetch with error handling
+
+        console.log(value)
+
+        switch (value[0]) {
+            case 'French':
+                setMusic('0FGVlHSANxoLzSBGorochB')
+                console.log("hi")
+                break;
+
+            default:
+                setMusic('')
+        }
+
+
+        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=01745a17a5c54e01bae3378020a94df6`)
+            .then(response => {
+                return response.json()
+            })
+            .then(response => {
+                console.log(response)
+                // console.log(response.results[0].id)
+                setResults({
+                    title: response.recipes[0].title,
+                    image: response.recipes[0].image,
+                    time: response.recipes[0].readyInMinutes
+                })
+                setGetID(
+                    response.recipes[0].id
+                )
+
+                setSteps(response.recipes[0].analyzedInstructions[0].steps.map((e) => (
+                    `${e.step}  `
+                )))
 
 
             }
             )
     }
 
-    function searchIngredients() {
-        fetch(`https://api.spoonacular.com/recipes/${getIngredients}/information?includeNutrition=false&apiKey=346d76812ee94c709e0825774f1e1d52`)
-        .then(response => {
-            return response.json()
-        })
-        .then(response => {
-            console.log(response)
-            console.log(response.extendedIngredients)
-            console.log(response.extendedIngredients.map((ingredient) => (
-                `${ingredient.name}`
-            )))
-            setGetIngredients(response.extendedIngredients.map((ingredient) => (
-                `${ingredient.name}`)))
-        })
-    }
+    // rewrites the array, adding a comma onto the end of each ingredient
+    var style = getIngredients.reduce(function(a, b) {
+        return a.concat(b).concat(', ');
+    }, []).slice(0, -1);
 
-    console.log(getIngredients);
+    
+    
     return (
 
         <div>
-            <Card title="Recipe Select" className="Recipe" hoverable={true} style={{ width: 700 }}>
-                <Cascader options={options} size="large" style={{ width: 400 }} placeholder="Select a Dish Type!" onChange={searchCuisine} />
-                <div>{searchIngredients()}</div>
+            <Card title="Recipe Select" className="recipe" hoverable={true}>
+                <Cascader options={options} size="large" placeholder="Select a Dish Type!" onChange={searchCuisine} />
+                <div></div>
             </Card >
 
 
 
             {
                 !results ? <div></div> :
-                    <Card style={{ width: 700 }} hoverable={true} className="returned-recipe" >
+                    <Card onLoad={searchIngredients} hoverable={true} className="returned-recipe"  >
                         <h3> {results.title} </h3>
                         <img className="food-pic" src={results.image}></img>
                         <p className="ready-time"> Ready in {results.time} minutes!</p>
-                        <p className="instructions">  {steps}   </p>
                         <p className="ingredient-title"> Ingredients: </p>
-                        <p className="ingredients"> {getIngredients}</p>
+                        <p className="ingredients"> {style}</p>
+                        <p className="steps-title"> Steps: </p>
+                        <p className="instructions">  {steps}   </p>
+                        {music}
                     </Card>
             }
 
-            <Button className="help-me" onClick={random}>
+            <Button className="help-me" onClick={searchRandom}>
                 No Time, Just Help!!
             </Button>
-            {renderData()}
 
 
 
