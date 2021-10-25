@@ -141,6 +141,8 @@ transition-duration: 0.2s;
   font-weight: 600;
   font-family: 'Lora', serif;
   font-family: 'Noto Sans', sans-serif;
+  border-bottom: 2px solid #282c34;
+  padding-bottom: 20px ;
 }
 
 .help-me{
@@ -170,6 +172,25 @@ letter-spacing: 2px;
 font-size: 15px;
 border-bottom: 2px solid #282c34;
 padding-bottom: 20px;
+font-family: 'Lora', serif;
+font-family: 'Noto Sans', sans-serif;
+font-weight: bold;
+}
+
+.spotify-playlist{
+  border-bottom: 2px solid #282c34;
+  padding-bottom: 25px;
+}
+
+.food-fact-title {
+  padding-top: 15px ;
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.food-fact {
+font-size: 20px;
+padding-bottom: 5px;
 font-family: 'Lora', serif;
 font-family: 'Noto Sans', sans-serif;
 font-weight: bold;
