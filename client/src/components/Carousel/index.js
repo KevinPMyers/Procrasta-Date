@@ -16,8 +16,8 @@ function FoodCarousel() {
 
 
     return (
-        <div>
-            <Carousel autoplay>
+        <div >
+            <Carousel dotsClass="dots" autoplay="true">
                 <div>
                     <img className="carousel" src={CarouselOne}></img>
 
