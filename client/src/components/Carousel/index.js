@@ -1,7 +1,7 @@
 import React from 'react';
 import { Carousel, Button } from 'antd';
-import CarouselOne from '../../assets/Carousel1.gif'
-import CarouselTwo from '../../assets/Carousel2.gif'
+import CarouselOne from '../../assets/Carousel1(2).png'
+import CarouselTwo from '../../assets/Carousel2.png'
 
 
 function FoodCarousel() {
@@ -14,10 +14,14 @@ function FoodCarousel() {
 
     };
 
+    function onChange(a, b, c) {
+        console.log(a, b, c);
+    }
+
 
     return (
         <div >
-            <Carousel dotsClass="dots" autoplay="true">
+            <Carousel afterChange={onChange} autoplay="true">
                 <div>
                     <img className="carousel" src={CarouselOne}></img>
 

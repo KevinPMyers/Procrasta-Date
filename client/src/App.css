@@ -306,9 +306,18 @@ font-weight: bold;
   margin-bottom: -10px;
 }
 
-.slick-dots{
-  opacity: 0;
+.slick-dots li{
+  
+  background-color: #282c34;
+  width: 50px;
 }
+
+.slick-dots {
+
+  height: 0px;
+}
+
+
 
 
 @media screen and (max-width: 800px) {
