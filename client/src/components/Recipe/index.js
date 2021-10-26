@@ -163,7 +163,7 @@ function RecipeCard() {
         }
 
 
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13&addRecipeInformation=true`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52&addRecipeInformation=true`)
             .then(response => {
                 return response.json()
             })
@@ -194,7 +194,7 @@ function RecipeCard() {
     }
 
     function searchIngredients() {
-        fetch(`https://api.spoonacular.com/recipes/${getID}/information?includeNutrition=false&apiKey=01745a17a5c54e01bae3378020a94df6`)
+        fetch(`https://api.spoonacular.com/recipes/${getID}/information?includeNutrition=false&apiKey=346d76812ee94c709e0825774f1e1d52`)
             .then(response => {
                 return response.json()
             })
@@ -230,7 +230,7 @@ function RecipeCard() {
         }
 
 
-        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=01745a17a5c54e01bae3378020a94df6`)
+        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=346d76812ee94c709e0825774f1e1d52`)
             .then(response => {
                 return response.json()
             })
@@ -260,7 +260,7 @@ function RecipeCard() {
         return a.concat(b).concat(', ');
     }, []).slice(0, -1);
 
-    
+    // var style = getIngredients.toString().toUpperCase();
     
     return (
 
