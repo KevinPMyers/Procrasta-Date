@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-errors');
-const { User, Date } = require('../models');
+const { User, MyDate } = require('../models');
 const { signToken } = require('../utils/auth');
 
 
@@ -14,7 +14,7 @@ const resolvers = {
                 return userData;
             }
 
-            throw new AuthenticationError('Not logged in.');
+            throw new AuthenticationError('Not logged in');
         },
         // get all users
         users: async () => {
@@ -31,10 +31,10 @@ const resolvers = {
         },
         dates: async (parent, { username }) => {
             const params = username ? { username } : {};
-            return Date.find(params).sort({ createdAt: -1 });
+            return MyDate.find(params).sort({ createdAt: -1 });
         },
         date: async (parent, { _id }) => {
-            return Date.findOne({ _id });
+            return MyDate.findOne({ _id });
         }
     },
 
@@ -63,7 +63,7 @@ const resolvers = {
         },
         addDate: async (parent, args, context) => {
             if (context.user) {
-                const date = await Date.create({ ...args, username: context.user.username });
+                const date = await MyDate.create({ ...args, username: context.user.username });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
@@ -73,7 +73,7 @@ const resolvers = {
 
                 return date;
             }
-            throw new AuthenticationError('You must be logged in.');
+            throw new AuthenticationError('You must be logged in');
         }
     }
 };
