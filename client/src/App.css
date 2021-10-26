@@ -41,13 +41,13 @@
 }
 
 header {
-  font-size: 50px;
+  font-size: 70px;
   font-weight: 600;
-  background-color: #7EBCE6;
+
 }
 
 .ant-layout {
-  background-color: #7EBCE6;
+  background-color: rgb(220, 224, 245);
 }
 
 .header-title{
@@ -61,11 +61,17 @@ header {
   width: 65%;
 }
 
+.intro{
+  font-size: 30px;
+  font-weight: 600;
+}
+
 .LandingButton{
   border: 1px solid #80004f;
-  border-radius: 4px;
-  padding-bottom: 40px;
-  
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 40px;
   background-color: #b9227f;
   color: aliceblue;
 }
@@ -74,6 +80,12 @@ header {
     background-color: #e658af;
     color: rgb(245, 245, 245);
     border: 1px solid #002364;
+}
+
+.carousel{
+  width: 100%;
+  border-top: solid 6px #b9227f;
+  border-bottom: solid 6px #b9227f;
 }
 
 .spotify {

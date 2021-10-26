@@ -235,7 +235,7 @@ function RecipeCard() {
             }
             )
 
-        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=01745a17a5c54e01bae3378020a94df6").then(response => {
+        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13").then(response => {
             return response.json()
         })
             .then(response => {
@@ -245,7 +245,7 @@ function RecipeCard() {
     }
 
     function searchIngredients() {
-        fetch(`https://api.spoonacular.com/recipes/${getID}/information?includeNutrition=false&apiKey=01745a17a5c54e01bae3378020a94df6`)
+        fetch(`https://api.spoonacular.com/recipes/${getID}/information?includeNutrition=false&apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13`)
             .then(response => {
                 return response.json()
             })
@@ -270,7 +270,7 @@ function RecipeCard() {
         setMusic("https://open.spotify.com/embed/playlist/5RhyxlHe1yEFFCGDTHhcwW")
 
 
-        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=01745a17a5c54e01bae3378020a94df6&type=main course`)
+        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13&type=main course`)
             .then(response => {
                 return response.json()
             })
@@ -294,7 +294,7 @@ function RecipeCard() {
             }
             )
 
-        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=01745a17a5c54e01bae3378020a94df6").then(response => {
+        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13").then(response => {
             return response.json()
         })
             .then(response => {
