@@ -12,7 +12,7 @@ function LandingPage() {
             <img className="forked-up" src={Fork}></img>
             <p className="intro"> We got you! Sign in and follow the steps to get things cookin!</p>
             <FoodCarousel />
-            <btn className="LandingButton" href="/login-page">Login/Sign Up</btn>
+            <Button type="submit" className="LandingButton" href="/login-page">Login/Sign Up</Button>
 
         </div >
     );

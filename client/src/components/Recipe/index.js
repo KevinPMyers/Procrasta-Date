@@ -19,27 +19,9 @@ function RecipeCard() {
     const [getIngredients, setGetIngredients] = useState([]);
     const [music, setMusic] = useState('')
     const [fact, setFact] = useState('')
+    const [styles, setStyles] = useState('')
+    const [foodstyles, setFoodStyles] = useState('')
 
-
-    const random = () => {
-        if (someState === false) {
-            setSomeState(true)
-        }
-        else if (someState === true) {
-            setSomeState(false)
-        }
-
-    }
-
-    const reset = () => {
-        if (searchState === false) {
-            setsearchState(true)
-        }
-        else if (searchState === true) {
-            setsearchState(false)
-        }
-
-    }
 
 
     let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13", {
@@ -155,21 +137,33 @@ function RecipeCard() {
         switch (value[0]) {
             case 'French':
                 setMusic("https://open.spotify.com/embed/artist/21lWVwQxrCGHedpvicoxbr")
+                setStyles("french")
+                setFoodStyles("french-food")
                 break;
             case 'Italian':
                 setMusic('https://open.spotify.com/embed/artist/7GgQPPfphmWHl4LUSD4fcU')
+                setStyles("italian")
+                setFoodStyles("italian-food")
                 break;
             case 'American':
                 setMusic('https://open.spotify.com/embed/playlist/1ZH9ObToPQQATnLXNnvu4C')
+                setStyles("american")
+                setFoodStyles("american-food")
                 break;
             case 'Caribbean':
                 setMusic('https://open.spotify.com/embed/playlist/0IL63l7iDIaEIBSGnpgNJK')
+                setStyles("caribbean")
+                setFoodStyles("caribbean-food")
                 break;
             case 'Greek':
                 setMusic('https://open.spotify.com/embed/album/0Y9XGeIynbLRRah2SSjf9Y?si=Vv0m4eAiT6iwbTt63vKQ2w')
+                setStyles("greek")
+                setFoodStyles("greek-food")
                 break;
             case 'Chinese':
                 setMusic('https://open.spotify.com/embed/album/6M3PJFvzdQcM6uvfqeTzAf?si=fG3u5EsGRkqBUCiSYwwS4A')
+                setStyles("chinese")
+                setFoodStyles("chinese-food")
                 break;
             case 'Indian':
                 setMusic('https://open.spotify.com/embed/album/3QqypECfGRIXY2uC7yYJDp?si=QcjGe4IQQZ62xoE1upGGJA')
@@ -206,7 +200,7 @@ function RecipeCard() {
         }
 
 
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13&addRecipeInformation=true&number=30&type=main course`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=3b8c9269a77c431a8b604b2ada505fef&addRecipeInformation=true&number=30&type=main course`)
             .then(response => {
                 return response.json()
             })
@@ -235,7 +229,7 @@ function RecipeCard() {
             }
             )
 
-        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13").then(response => {
+        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=3b8c9269a77c431a8b604b2ada505fef").then(response => {
             return response.json()
         })
             .then(response => {
@@ -245,7 +239,7 @@ function RecipeCard() {
     }
 
     function searchIngredients() {
-        fetch(`https://api.spoonacular.com/recipes/${getID}/information?includeNutrition=false&apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13`)
+        fetch(`https://api.spoonacular.com/recipes/${getID}/information?includeNutrition=false&apiKey=3b8c9269a77c431a8b604b2ada505fef`)
             .then(response => {
                 return response.json()
             })
@@ -270,7 +264,7 @@ function RecipeCard() {
         setMusic("https://open.spotify.com/embed/playlist/5RhyxlHe1yEFFCGDTHhcwW")
 
 
-        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13&type=main course`)
+        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=3b8c9269a77c431a8b604b2ada505fef&type=main course`)
             .then(response => {
                 return response.json()
             })
@@ -294,7 +288,7 @@ function RecipeCard() {
             }
             )
 
-        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13").then(response => {
+        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=3b8c9269a77c431a8b604b2ada505fef").then(response => {
             return response.json()
         })
             .then(response => {
@@ -313,7 +307,7 @@ function RecipeCard() {
 
     return (
 
-        <div>
+        <div className="return-card">
             <Card title="Recipe Select" className="recipe" hoverable={true}>
                 <Cascader options={options} size="large" placeholder="Select a Dish Type!" onChange={searchCuisine} />
                 <div></div>
@@ -324,10 +318,10 @@ function RecipeCard() {
             {
 
                 !results ? <div></div> :
-                    <Card style={{ width: 700 }} onLoad={searchIngredients} hoverable={true} className="returned-recipe"  >
+                    <Card onLoad={searchIngredients} hoverable={true} className="returned-recipe"  >
                         <h3> {results.title} </h3>
-                        <img className="food-pic" src={results.image}></img>
-                        <p className="ready-time"> Ready in {results.time} minutes!</p>
+                        <img className={foodstyles} src={results.image}></img>
+                        <p className={styles}> Ready in {results.time} minutes!</p>
                         <p className="ingredient-title"> Ingredients: </p>
                         <p className="ingredients"> {style}</p>
                         <p className="steps-title"> Steps: </p>
