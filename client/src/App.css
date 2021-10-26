@@ -83,9 +83,11 @@ header {
 }
 
 .carousel{
-  width: 100%;
+  width: 85%;
   border-top: solid 6px #b9227f;
-  border-bottom: solid 6px #b9227f;
+  border: solid 6px #b9227f;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .spotify {
@@ -147,6 +149,48 @@ border-radius: 5px;
 border-radius: 5px;
  border: 5px solid #9C130C;
 }
+
+.indian-food {
+border-radius: 5px;
+ border: 5px solid #751F00;
+}
+
+.mediterranean-food {
+border-radius: 5px;
+ border: 5px solid #155E7D;
+}
+
+.european-food {
+border-radius: 5px;
+ border: 5px solid #361212;
+}
+
+.japanese-food {
+border-radius: 5px;
+ border: 5px solid #5E5E53;
+}
+
+.mexican-food {
+border-radius: 5px;
+ border: 5px solid #934927;
+}
+
+.german-food {
+border-radius: 5px;
+ border: 5px solid #486177;
+}
+
+.southern-food {
+border-radius: 5px;
+ border: 5px solid #5F2C26;
+}
+
+.middle-eastern-food {
+border-radius: 5px;
+ border: 5px solid #414141;
+}
+
+
 
 .french{
   background-color: #844E06;
@@ -213,6 +257,108 @@ border-radius: 5px;
   color: #f3f3f3;
   border-radius: 5px;
 }
+
+.indian{
+  background-color: #751F00;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 20px ;
+  margin-left: 200px;
+  margin-right: 200px;
+  color: #f3f3f3;
+  border-radius: 5px;
+}
+
+.mediterranean{
+  background-color: #155E7D;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 20px ;
+  margin-left: 200px;
+  margin-right: 200px;
+  color: #f3f3f3;
+  border-radius: 5px;
+}
+
+
+.european{
+  background-color: #361212;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 20px ;
+  margin-left: 200px;
+  margin-right: 200px;
+  color: #f3f3f3;
+  border-radius: 5px;
+}
+
+.japanese{
+  background-color: #5E5E53;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 20px ;
+  margin-left: 200px;
+  margin-right: 200px;
+  color: #f3f3f3;
+  border-radius: 5px;
+}
+
+
+.mexican{
+  background-color: #934927;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 20px ;
+  margin-left: 200px;
+  margin-right: 200px;
+  color: #f3f3f3;
+  border-radius: 5px;
+}
+
+.thai{
+  background-color: #0A6397;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 20px ;
+  margin-left: 200px;
+  margin-right: 200px;
+  color: #f3f3f3;
+  border-radius: 5px;
+}
+
+.german{
+  background-color: #486177;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 20px ;
+  margin-left: 200px;
+  margin-right: 200px;
+  color: #f3f3f3;
+  border-radius: 5px;
+}
+
+.southern{
+  background-color: #5F2C26;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 20px ;
+  margin-left: 200px;
+  margin-right: 200px;
+  color: #f3f3f3;
+  border-radius: 5px;
+}
+
+.middle-eastern{
+  background-color: #414141;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 20px ;
+  margin-left: 200px;
+  margin-right: 200px;
+  color: #f3f3f3;
+  border-radius: 5px;
+}
+
 
 /* .returned-recipe:hover img{
   border: 4px solid #8980F5;
@@ -317,6 +463,17 @@ font-weight: bold;
   height: 0px;
 }
 
+.ant-card-head-title {
+  font-size: 30px;
+  font-weight: 600;
+}
+.ant-cascader-picker{
+  width: 50%;
+}
+
+.ant-cascader-picker-label{
+  font-size: 20px;
+}
 
 
 
@@ -330,8 +487,10 @@ font-weight: bold;
   .returned-recipe {
     width: 500px;
   }
-  .ready-time {
-    margin: auto;
+                
+  .french, .italian, .american, .caribbean, .greek, .chinese, .indian, .mediterranean, .european, .japanese, .mexican, .thai, .german, .southern, .middle-eastern {
+    margin-left: auto;
+     margin-right: auto;
     margin-top: 10px;
   }
 }
@@ -345,7 +504,7 @@ font-weight: bold;
   .returned-recipe {
     width: 350px;
   }
-  .food-pic {
+  .french-food, .italian-food, .american-food, .caribbean-food, .greek-food, .chinese-food, .indian-food, .mediterranean-food, .european-food, .japanese-food, .mexican-food, .thai-food, .german-food, .southern-food, .middle-eastern-food  {
     width: 100%;
   }
   .header-title {
