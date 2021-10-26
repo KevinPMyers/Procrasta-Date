@@ -11,9 +11,23 @@ const typeDefs = gql`
     type MyDate {
         _id: ID
         createdAt: String
-        username: Schema.Types.ObjectId
+        username: String
         recipes: [Recipe]
         music: [Music]
+    }
+
+    type Music {
+        _id: ID
+        title: String
+        Artist: String
+        Genre: String
+    }
+
+    type Recipe {
+        _id: ID
+        name: String
+        ingredients: String
+        instructions: String
     }
 
     type Auth {
@@ -24,7 +38,7 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
-        dates(username: Schema.Types.ObjectId): [MyDate]
+        dates(username: String!): [MyDate]
         date(_id: ID!): MyDate
     }
 
