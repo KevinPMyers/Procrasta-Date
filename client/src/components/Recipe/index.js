@@ -167,30 +167,48 @@ function RecipeCard() {
                 break;
             case 'Indian':
                 setMusic('https://open.spotify.com/embed/album/3QqypECfGRIXY2uC7yYJDp?si=QcjGe4IQQZ62xoE1upGGJA')
+                setStyles("indian")
+                setFoodStyles("indian-food")
                 break;
             case 'Mediterranean':
                 setMusic('https://open.spotify.com/embed/album/5pdMdpF9SSdzzEMXyE0Zb4?si=0pk0Pp6bSk2zmOa7rEeZYA')
+                setStyles("mediterranean")
+                setFoodStyles("mediterranean-food")
                 break;
             case 'European':
                 setMusic('https://open.spotify.com/embed/album/6Yo2yr1t3tv3wWOLWJBhF4?si=kdwek9rKQ96LpiXpJ3KhBQ')
+                setStyles("european")
+                setFoodStyles("european-food")
                 break;
             case 'Japanese':
                 setMusic('https://open.spotify.com/embed/playlist/4TyimJNmi0T8khXSHULYui')
+                setStyles("japanese")
+                setFoodStyles("japanese-food")
                 break;
             case 'Mexican':
                 setMusic('https://open.spotify.com/embed/playlist/0QYKTxUZxxUv5pgMCwQITC')
+                setStyles("mexican")
+                setFoodStyles("mexican-food")
                 break;
             case 'Thai':
                 setMusic('https://open.spotify.com/embed/playlist/0kpYdO6ts00Cog2wIbdmZd')
+                setStyles("thai")
+                setFoodStyles("thai-food")
                 break;
             case 'German':
                 setMusic('https://open.spotify.com/embed/playlist/46sOO9xULLbpTWyIeZkZDE')
+                setStyles("german")
+                setFoodStyles("german-food")
                 break;
             case 'Southern':
                 setMusic('https://open.spotify.com/embed/playlist/3Bgs8meDQxHuTrdiqUGZGR')
+                setStyles("southern")
+                setFoodStyles("southern-food")
                 break;
             case 'Middle Eastern':
                 setMusic('https://open.spotify.com/embed/playlist/43R9R4yzfVKP8UPXyKXaLd')
+                setStyles("middle-eastern")
+                setFoodStyles("middle-eastern-food")
                 break;
 
             default:
