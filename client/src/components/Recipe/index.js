@@ -252,6 +252,8 @@ function RecipeCard() {
     function searchRandom(value) {
         // GET request using fetch with error handling
         setMusic("https://open.spotify.com/embed/playlist/5RhyxlHe1yEFFCGDTHhcwW")
+        setStyles('random')
+        setFoodStyles('random-food')
 
 
         fetch(`https://api.spoonacular.com/recipes/random/?apiKey=3b8c9269a77c431a8b604b2ada505fef&type=main course`)
@@ -285,6 +287,41 @@ function RecipeCard() {
                 console.log(response.text)
                 setFact(response.text)
             })
+
+    }
+
+    function searchSingle() {
+        // GET request using fetch with error handling
+        setMusic("https://open.spotify.com/embed/playlist/23QwFDXMFGYYygnbr1D7hG")
+        setStyles('single')
+        setFoodStyles('single-food')
+        setFact("Bummer, sorry you're here bud.")
+
+
+        fetch(`https://api.spoonacular.com/recipes/random?&tags=beverage,drink&apiKey=3b8c9269a77c431a8b604b2ada505fef&type=main course`)
+            .then(response => {
+                return response.json()
+            })
+            .then(response => {
+                console.log(response)
+                // console.log(response.results[0].id)
+                setResults({
+                    title: response.recipes[0].title,
+                    image: response.recipes[0].image,
+                    time: response.recipes[0].readyInMinutes
+                })
+                setGetID(
+                    response.recipes[0].id
+                )
+
+                setSteps(response.recipes[0].analyzedInstructions[0].steps.map((e) => (
+                    `${e.step}  `
+                )))
+
+
+            }
+            )
+
 
     }
 
@@ -328,6 +365,10 @@ function RecipeCard() {
 
             <Button className="help-me" onClick={searchRandom}>
                 No Time, Just Help!!
+            </Button>
+
+            <Button className="help-me" onClick={searchSingle}>
+                Recipe for One...
             </Button>
 
 
