@@ -10,6 +10,7 @@ const typeDefs = gql`
 
     type MyDate {
         _id: ID
+        datename: String
         createdAt: String
         username: String
         recipes: [Recipe]

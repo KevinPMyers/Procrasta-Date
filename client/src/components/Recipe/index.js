@@ -22,7 +22,7 @@ function RecipeCard() {
     const [styles, setStyles] = useState('')
     const [foodstyles, setFoodStyles] = useState('')
 
-
+    
 
     let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13", {
         depends: [someState] // don't call request, if someState: false

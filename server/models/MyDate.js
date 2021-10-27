@@ -14,10 +14,10 @@ const dateSchema = new Schema({
         default: Date.now
     },
 
-    // username: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User'
-    // }],
+    username: {
+        type: String,
+        required: true
+    },
     // recipes: [{
     //     type: Schema.Types.ObjectId,
     //     ref: 'Recipe'

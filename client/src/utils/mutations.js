@@ -6,7 +6,7 @@ export const LOGIN = gql`
       token
       user {
         _id
-        $username
+        
       }
     }
   }
@@ -25,8 +25,22 @@ export const ADD_USER = gql`
       token
       user {
         _id
-        username
+        
       }
     }
   }
 `;
+
+export const ADD_Date = gql `
+  mutation addDate( $datename: String! ) {
+    addDate(datename: $datename) {
+      _id
+      datename
+      createdAt
+      username
+      recipes
+      music
+
+    }
+  }
+`
