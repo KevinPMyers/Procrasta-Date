@@ -6,7 +6,7 @@ const { User } = require('../models');
 db.once('open', async () => {
     await User.deleteMany({});
 
-    const userDate = [];
+    const userData = [];
 
     for (let i = 0; i < 50; i += 1) {
         const username = faker.internet.userName();
