@@ -14,14 +14,12 @@ function FoodCarousel() {
 
     };
 
-    function onChange(a, b, c) {
-        console.log(a, b, c);
-    }
+
 
 
     return (
         <div >
-            <Carousel afterChange={onChange} autoplay="true">
+            <Carousel  autoplay="true">
                 <div>
                     <img className="carousel" src={CarouselOne}></img>
 
