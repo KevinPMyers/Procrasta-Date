@@ -51,8 +51,6 @@ function SignUpForm() {
     };
 
 
-
-
     return (
 
         <Form
@@ -93,7 +91,7 @@ function SignUpForm() {
 
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                <Button type="primary" htmlType="submit">
+                <Button type="primary" htmlType="submit" >
                     Submit
                 </Button>
             </Form.Item>
