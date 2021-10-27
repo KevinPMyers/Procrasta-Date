@@ -22,107 +22,81 @@ function RecipeCard() {
     const [styles, setStyles] = useState('')
     const [foodstyles, setFoodStyles] = useState('')
 
-    
-
-    let { data } = useFetch("https://api.spoonacular.com/recipes/random/?apiKey=fe5be6f06ffc4c34a7b15a9b0eee0e13", {
-        depends: [someState] // don't call request, if someState: false
-
-    }
-
-
-    )
-    console.log(data)
-
 
     const options = [
         {
             value: 'French',
             label: 'French',
-            playlist: '0FGVlHSANxoLzSBGorochB'
 
         },
         {
             value: 'Italian',
             label: 'Italian',
-            playlist: '37i9dQZF1DWT1R6bXL4dyW'
 
         },
         {
             value: 'American',
             label: 'American',
-            playlist: '4uiRNNbmm1erAgfPvt5G75'
 
         },
         {
             value: 'Caribbean',
             label: 'Caribbean',
-            playlist: '1xZ9Ijqvjte3NSTD592z70'
 
         },
         {
             value: 'Greek',
             label: 'Greek',
-            playlist: '3Nxq6nGhQMHtKdVrS3LCZ6'
 
         },
         {
             value: 'Chinese',
             label: 'Chinese',
-            playlist: '19S6EyhjFSF7BcFd0tjcVP'
 
         },
         {
             value: 'Indian',
             label: 'Indian',
-            playlist: '6mwx8P8cxai9ksljpdPc6e'
 
         },
         {
             value: 'Mediterranean',
             label: 'Mediterranean',
-            playlist: '1pKpHwwvfOjTh7PBxVV15Q'
 
         },
         {
             value: 'European',
             label: 'European',
-            playlist: '4PcR5ahD71QfQEk4DJPian'
 
         },
         {
             value: 'Japanese',
-            label: 'Japanese',
-            playlist: '37i9dQZF1EIflvhyG0AA3D'
+            label: 'Japanese'
 
         },
         {
             value: 'Mexican',
             label: 'Mexican',
-            playlist: '3tkMu5P1fyWKF0jilTLaHU'
 
         },
         {
             value: 'Thai',
-            label: 'Thai',
-            playlist: '0kpYdO6ts00Cog2wIbdmZd'
+            label: 'Thai'
 
         },
         {
             value: 'German',
             label: 'German',
-            playlist: '2AnmygZrJjMHZehRhXgrls'
 
         },
         {
             value: 'Southern',
             label: 'Southern',
-            playlist: '0zaEuebc8oZQPPpXuozFxX'
 
         },
         {
             value: 'Middle Eastern',
             label: 'Middle Eastern',
-            playlist: '43R9R4yzfVKP8UPXyKXaLd'
 
         },
 
@@ -131,7 +105,6 @@ function RecipeCard() {
 
 
     function searchCuisine(value) {
-        // GET request using fetch with error handling
 
         //Swtich Statement to Assign the correct useState to music using setMusic
         switch (value[0]) {
@@ -213,7 +186,6 @@ function RecipeCard() {
 
             default:
                 setMusic('')
-
 
         }
 
