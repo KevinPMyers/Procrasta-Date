@@ -15,11 +15,9 @@ function FoodCarousel() {
     };
 
 
-
-
     return (
         <div >
-            <Carousel  autoplay="true">
+            <Carousel autoplay="true">
                 <div>
                     <img className="carousel" src={CarouselOne}></img>
 
@@ -29,7 +27,7 @@ function FoodCarousel() {
                 </div>
 
 
-            </Carousel>,
+            </Carousel>
 
         </div>
     )
