@@ -9,10 +9,6 @@ function SignUpForm() {
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
     const [signUp, { error }] = useMutation(ADD_USER);
 
-    const onFinish = (values) => {
-        console.log('Success:', values);
-    };
-
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
