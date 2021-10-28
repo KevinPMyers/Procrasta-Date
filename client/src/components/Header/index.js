@@ -23,9 +23,11 @@ function Header() {
 
                         <div className="sub-header">
                             <img className="forked-up" src={Fork}></img>
+                            <div className="logout-div">
                             <a className="LogoutButton" onClick={logout}>
                                 Logout
                             </a>
+                                </div>
                         </div>
                         <p className="intro"> Well well well, look who's here. It's okay, we've all been there. One click and we'll have a perfect date meal and playlist at your fingertips! </p>
                     </div>
