@@ -189,7 +189,7 @@ function RecipeCard() {
         }
 
 
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=3b8c9269a77c431a8b604b2ada505fef&addRecipeInformation=true&number=30&type=main course`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52&addRecipeInformation=true&number=30&type=main course`)
             .then(response => {
                 return response.json()
             })
@@ -218,7 +218,7 @@ function RecipeCard() {
             }
             )
 
-        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=3b8c9269a77c431a8b604b2ada505fef").then(response => {
+        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=346d76812ee94c709e0825774f1e1d52").then(response => {
             return response.json()
         })
             .then(response => {
@@ -228,7 +228,7 @@ function RecipeCard() {
     }
 
     function searchIngredients() {
-        fetch(`https://api.spoonacular.com/recipes/${getID}/information?includeNutrition=false&apiKey=3b8c9269a77c431a8b604b2ada505fef`)
+        fetch(`https://api.spoonacular.com/recipes/${getID}/information?includeNutrition=false&apiKey=346d76812ee94c709e0825774f1e1d52`)
             .then(response => {
                 return response.json()
             })
@@ -255,7 +255,7 @@ function RecipeCard() {
         setFoodStyles('random-food')
 
 
-        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=3b8c9269a77c431a8b604b2ada505fef&type=main course`)
+        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=346d76812ee94c709e0825774f1e1d52&type=main course`)
             .then(response => {
                 return response.json()
             })
@@ -279,7 +279,7 @@ function RecipeCard() {
             }
             )
 
-        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=3b8c9269a77c431a8b604b2ada505fef").then(response => {
+        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=346d76812ee94c709e0825774f1e1d52").then(response => {
             return response.json()
         })
             .then(response => {
@@ -297,7 +297,7 @@ function RecipeCard() {
         setFact("Bummer, sorry you're here bud.")
 
 
-        fetch(`https://api.spoonacular.com/recipes/random?&tags=beverage,drink&apiKey=3b8c9269a77c431a8b604b2ada505fef&type=main course`)
+        fetch(`https://api.spoonacular.com/recipes/random?&tags=beverage,drink&apiKey=346d76812ee94c709e0825774f1e1d52&type=main course`)
             .then(response => {
                 return response.json()
             })
