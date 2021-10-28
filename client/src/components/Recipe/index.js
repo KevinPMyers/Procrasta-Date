@@ -1,8 +1,7 @@
 import React from 'react';
 import { Input, Cascader, Card, Button } from 'antd';
-import List from '../List';
 import { useEffect, useState } from "react";
-import useFetch from "react-fetch-hook"
+import preRecipe from "../../assets/RecipeLoad.png"
 
 
 function RecipeCard() {
@@ -335,17 +334,23 @@ function RecipeCard() {
     return (
 
         <div className="return-card">
-            <Card title="Recipe Select" className="recipe" hoverable={true}>
+            <Card title="Select Your Meal Type!" className="recipe" hoverable={true}>
                 <Cascader options={options} size="large" placeholder="Select a Dish Type!" onChange={searchCuisine} />
                 <div></div>
             </Card >
+            <Button className="help-me" onClick={searchRandom}>
+                No Time, Just Help!!
+            </Button>
 
+            <Button className="help-me" onClick={searchSingle}>
+                Recipe for One...
+            </Button>
 
 
             {
 
-                !results ? <div></div> :
-                    <Card onLoad={searchIngredients} hoverable={true} className="returned-recipe"  >
+                !results ? <div > </div> :
+                    <Card onLoad={searchIngredients} hoverable={true} className="returned-recipe" >
                         <h3> {results.title} </h3>
                         <img className={foodstyles} src={results.image}></img>
                         <p className={styles}> Ready in {results.time} minutes!</p>
@@ -360,17 +365,6 @@ function RecipeCard() {
                     </Card>
 
             }
-
-
-
-            <Button className="help-me" onClick={searchRandom}>
-                No Time, Just Help!!
-            </Button>
-
-            <Button className="help-me" onClick={searchSingle}>
-                Recipe for One...
-            </Button>
-
 
 
         </div >

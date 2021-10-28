@@ -21,6 +21,7 @@ function LandingPage() {
                     <div>
                         <FoodCarousel />
                         <Link className="LandingButton" to="/login-page">Login/SignUp</Link>
+
                     </div>}
 
         </div >
