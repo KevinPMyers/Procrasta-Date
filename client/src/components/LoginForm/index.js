@@ -17,15 +17,10 @@ function LoginForm() {
             ...formState,
             [name]: value
         });
-
-        console.log(formState)
     };
 
     // submit form
-    const handleFormSubmit = async event => {
-
-
-
+    const handleFormSubmit = async() => {
         try {
             const { data } = await login({
                 variables: { ...formState }

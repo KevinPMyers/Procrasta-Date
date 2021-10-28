@@ -187,9 +187,6 @@ function RecipeCard() {
                 return response.json()
             })
             .then(response => {
-                console.log(response)
-                // console.log(response.results[0].id)
-
                 if (!response.results) {
                     setResults({
                         title: "Sorry the Site is too popular at the moment! Come back later <3",
@@ -233,7 +230,6 @@ function RecipeCard() {
             return response.json()
         })
             .then(response => {
-                console.log(response.text)
                 setFact(response.text)
             })
 
@@ -245,14 +241,6 @@ function RecipeCard() {
                 return response.json()
             })
             .then(response => {
-                console.log(response)
-                console.log(response.extendedIngredients)
-                console.log(response.extendedIngredients.map((ingredient) => (
-                    `${ingredient.name}`
-                )))
-
-
-
                 setGetIngredients(response.extendedIngredients.map((ingredient) => (
 
                     `${ingredient.name}`)))
@@ -274,9 +262,6 @@ function RecipeCard() {
                 return response.json()
             })
             .then(response => {
-                console.log(response)
-                // console.log(response.results[0].id)
-
                 if (!response.recipes) {
                     setResults({
                         title: "Sorry the Site is too popular at the moment! Come back later <3",
@@ -316,7 +301,6 @@ function RecipeCard() {
             return response.json()
         })
             .then(response => {
-                console.log(response.text)
                 setFact(response.text)
             })
 
@@ -335,9 +319,6 @@ function RecipeCard() {
                 return response.json()
             })
             .then(response => {
-                console.log(response)
-                // console.log(response.results[0].id)
-
                 if (!response.recipes) {
                     setResults({
                         title: "Sorry the Site is too popular at the moment! Come back later <3",
@@ -371,8 +352,6 @@ function RecipeCard() {
                 }
             }
             )
-
-
     }
 
     // rewrites the array, adding a comma onto the end of each ingredient

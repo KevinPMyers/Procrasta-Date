@@ -26,7 +26,6 @@ function SignUpForm() {
 
     const handleFormSubmit = async event => {
 
-
         console.log("Sucess")
         try {
             const { data } = await signUp({
