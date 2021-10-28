@@ -1,8 +1,7 @@
 import React from "react";
 import Fork from '../../assets/ForkedUp.png'
-import { Button } from 'antd';
 import Auth from '../../utils/auth';
-import { Link } from 'react-router-dom';
+
 
 function Header() {
     const logout = event => {

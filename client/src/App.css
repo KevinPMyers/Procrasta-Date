@@ -267,6 +267,10 @@ border-radius: 5px;
   border-radius: 5px;
 }
 
+.no-food {
+  border: none;
+}
+
 
 
 .french{
@@ -455,6 +459,17 @@ border-radius: 5px;
   margin-left: 200px;
   margin-right: 200px;
   color: #f3f3f3;
+  border-radius: 5px;
+}
+
+.none {
+  background-color: #ffffff;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 0px ;
+  margin-left: 200px;
+  margin-right: 200px;
+  color: #ffffff;
   border-radius: 5px;
 }
 
@@ -655,6 +670,10 @@ footer {
     padding-left: 60px;
     
   }
+    .ant-card-head-title {
+  font-size: 24px;
+  font-weight: 600;
+}
 
      .sub-header {
     margin-bottom: 20px;
@@ -698,6 +717,7 @@ footer {
   color: aliceblue;
 
   }
+
 
 
   .intro {
