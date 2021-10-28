@@ -1,9 +1,8 @@
 import React from 'react';
 import { Cascader, Card, Button } from 'antd';
 import { useState } from "react";
-import preRecipe from "../../assets/RecipeLoad.png"
-import { useMutation } from '@apollo/client';
-import { ADD_DATE } from '../../utils/mutations';
+
+
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -20,19 +19,7 @@ function RecipeCard() {
     const [styles, setStyles] = useState('')
     const [foodstyles, setFoodStyles] = useState('')
     
-    const [sendDate] = useMutation(ADD_DATE, {
-        update(cache, { data: { sendDate }}) {
-            try {
-                const { dates } = cache.readQuery({ query: ADD_DATE });
-                cache.writeQuery({
-                    query: ADD_DATE,
-                    data: { dates: [sendDate, ...dates]}
-                });
-            } catch (e) {
-                console.error(e)
-            }
-        }
-    });
+    
     
     
 
@@ -404,7 +391,7 @@ function RecipeCard() {
 
 
     return (
-
+        
         <div className="return-card">
             <Card title="Select Your Meal Type!" className="recipe" hoverable={true}>
                 <Cascader options={options} size="large" placeholder="Select a Dish Type!" onChange={searchCuisine} />
@@ -434,14 +421,22 @@ function RecipeCard() {
                         <iframe src={music} width="600" height="420" frameBorder="0" className="spotify-playlist" allowtransparency="true" play="true" allow="encrypted-media"></iframe>
                         <p className="food-fact-title"> Icebreaker Food Fact: </p>
                         <p className="food-fact">  {fact}   </p>
+                        
+                        {/* <SaveDateButton 
+                        results = {results}
+                        steps = {steps}
+                        getIngredients = {getIngredients}
+                        music = {music}>
 
-                        <Button onClick={sendDate}>Save this Date</Button>
+                        </SaveDateButton> */}
                     </Card>
 
             }
 
-
+            
         </div >
+        
+        
     )
 }
 
