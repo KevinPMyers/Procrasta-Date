@@ -2,6 +2,9 @@ import React from 'react';
 import { Cascader, Card, Button } from 'antd';
 import { useState } from "react";
 import preRecipe from "../../assets/RecipeLoad.png"
+import { useMutation } from '@apollo/client';
+import { ADD_DATE } from '../../utils/mutations';
+
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 function RecipeCard() {
@@ -20,9 +23,9 @@ function RecipeCard() {
     const [sendDate] = useMutation(ADD_DATE, {
         update(cache, { data: { sendDate }}) {
             try {
-                const { dates } = cache.readQuery({ query: QUERY_DATES });
+                const { dates } = cache.readQuery({ query: ADD_DATE });
                 cache.writeQuery({
-                    query: QUERY_DATES,
+                    query: ADD_DATE,
                     data: { dates: [sendDate, ...dates]}
                 });
             } catch (e) {
