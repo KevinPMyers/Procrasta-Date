@@ -1,5 +1,5 @@
 import React from "react";
-import Drawer from "../components/Drawer";
+
 import RecipeCard from "../components/Recipe";
 
 function RecipePage() {
@@ -10,7 +10,7 @@ function RecipePage() {
 
                 <RecipeCard />
             </div>
-            <Drawer />
+            
 
 
         </div>
