@@ -2,7 +2,10 @@ import React from 'react';
 import { Input, Cascader, Card, Button } from 'antd';
 import List from '../List';
 import { useEffect, useState } from "react";
-import useFetch from "react-fetch-hook"
+import useFetch from "react-fetch-hook";
+import { ADD_DATE } from '../../utils/mutations';
+import { useMutation } from '@apollo/client';
+import { QUERY_DATES } from '../../utils/queries';
 
 
 function RecipeCard() {
@@ -21,7 +24,22 @@ function RecipeCard() {
     const [fact, setFact] = useState('')
     const [styles, setStyles] = useState('')
     const [foodstyles, setFoodStyles] = useState('')
-
+    
+    const [sendDate] = useMutation(ADD_DATE, {
+        update(cache, { data: { sendDate }}) {
+            try {
+                const { dates } = cache.readQuery({ query: QUERY_DATES });
+                cache.writeQuery({
+                    query: QUERY_DATES,
+                    data: { dates: [sendDate, ...dates]}
+                });
+            } catch (e) {
+                console.error(e)
+            }
+        }
+    });
+    
+    
 
     const options = [
         {
@@ -320,6 +338,8 @@ function RecipeCard() {
                         <iframe src={music} width="600" height="420" frameBorder="0" className="spotify-playlist" allowtransparency="true" play="true" allow="encrypted-media"></iframe>
                         <p className="food-fact-title"> Icebreaker Food Fact: </p>
                         <p className="food-fact">  {fact}   </p>
+
+                        <Button onClick={sendDate}>Save this Date</Button>
                     </Card>
 
             }

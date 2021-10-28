@@ -33,7 +33,7 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_Date = gql `
+export const ADD_DATE = gql `
   mutation addDate( $datename: String! ) {
     addDate(datename: $datename) {
       _id

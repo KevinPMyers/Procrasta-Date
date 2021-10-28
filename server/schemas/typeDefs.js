@@ -14,15 +14,10 @@ const typeDefs = gql`
         createdAt: String
         username: String
         recipes: [Recipe]
-        music: [Music]
+        music: String
     }
 
-    type Music {
-        _id: ID
-        title: String
-        Artist: String
-        Genre: String
-    }
+
 
     type Recipe {
         _id: ID

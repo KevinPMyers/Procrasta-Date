@@ -18,17 +18,11 @@ const dateSchema = new Schema({
         type: String,
         required: true
     },
-    // recipes: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Recipe'
-    // }],
-    // or would this be better
     recipes: [recipeSchema],
-    // music: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Music'
-    // }]
-    music: [musicSchema]
+    
+    music: {
+        type: String
+    }
 
 });
 
