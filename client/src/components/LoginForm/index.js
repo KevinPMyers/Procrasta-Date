@@ -7,7 +7,7 @@ import Auth from '../../utils/auth';
 function LoginForm() {
 
     const [formState, setFormState] = useState({ username: '', password: '' });
-    const [login, { error }] = useMutation(LOGIN);
+    const [login] = useMutation(LOGIN);
 
     // update state based on form input changes
     const handleChange = event => {
@@ -17,15 +17,10 @@ function LoginForm() {
             ...formState,
             [name]: value
         });
-
-        console.log(formState)
     };
 
     // submit form
-    const handleFormSubmit = async event => {
-
-
-
+    const handleFormSubmit = async() => {
         try {
             const { data } = await login({
                 variables: { ...formState }

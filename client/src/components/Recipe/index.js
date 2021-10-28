@@ -1,9 +1,6 @@
 import React from 'react';
 import { Cascader, Card, Button } from 'antd';
 import { useState } from "react";
-
-
-
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 function RecipeCard() {
@@ -188,16 +185,11 @@ function RecipeCard() {
                 setMusic('')
 
         }
-
-
         fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=${API_KEY}&addRecipeInformation=true&number=30&type=main course`)
             .then(response => {
                 return response.json()
             })
             .then(response => {
-                console.log(response)
-                // console.log(response.results[0].id)
-
                 if (!response.results) {
                     setResults({
                         title: "Sorry the Site is too popular at the moment! Come back later <3",
@@ -230,9 +222,6 @@ function RecipeCard() {
                     setSteps(response.results[i].analyzedInstructions[0].steps.map((e) => (
                         `${e.step}  `
                     )))
-
-                    let id = response.results[i].id
-
                 }
             }
             )
@@ -241,7 +230,6 @@ function RecipeCard() {
             return response.json()
         })
             .then(response => {
-                console.log(response.text)
                 setFact(response.text)
             })
 
@@ -253,14 +241,6 @@ function RecipeCard() {
                 return response.json()
             })
             .then(response => {
-                console.log(response)
-                console.log(response.extendedIngredients)
-                console.log(response.extendedIngredients.map((ingredient) => (
-                    `${ingredient.name}`
-                )))
-
-
-
                 setGetIngredients(response.extendedIngredients.map((ingredient) => (
 
                     `${ingredient.name}`)))
@@ -282,9 +262,6 @@ function RecipeCard() {
                 return response.json()
             })
             .then(response => {
-                console.log(response)
-                // console.log(response.results[0].id)
-
                 if (!response.recipes) {
                     setResults({
                         title: "Sorry the Site is too popular at the moment! Come back later <3",
@@ -324,7 +301,6 @@ function RecipeCard() {
             return response.json()
         })
             .then(response => {
-                console.log(response.text)
                 setFact(response.text)
             })
 
@@ -343,9 +319,6 @@ function RecipeCard() {
                 return response.json()
             })
             .then(response => {
-                console.log(response)
-                // console.log(response.results[0].id)
-
                 if (!response.recipes) {
                     setResults({
                         title: "Sorry the Site is too popular at the moment! Come back later <3",
@@ -379,8 +352,6 @@ function RecipeCard() {
                 }
             }
             )
-
-
     }
 
     // rewrites the array, adding a comma onto the end of each ingredient

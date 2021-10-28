@@ -664,6 +664,11 @@ footer {
     .sub-header {
     margin-bottom: 20px;
   }
+
+   .ant-card-head-title {
+    font-size: 20px;
+  }
+
   .recipe {
     width: 350px;
     margin-left: auto;
@@ -687,6 +692,8 @@ footer {
 
 @media screen and (max-width: 400px) {
 
+
+
   .LogoutButton {
   margin-top: 20px ;
   border: 1px solid #80004f;
@@ -699,6 +706,7 @@ footer {
   }
   .intro {
     font-size: 20px;
+    padding: 5px;;
   }
 
   .recipe {
