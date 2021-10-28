@@ -1,15 +1,10 @@
 import React from 'react';
-import { Input, Cascader, Card, Button } from 'antd';
-import { useEffect, useState } from "react";
-import preRecipe from "../../assets/RecipeLoad.png"
-
+import { Cascader, Card, Button } from 'antd';
+import { useState } from "react";
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 function RecipeCard() {
 
-    const [someState, setSomeState] = useState(false);
-
-
-    const [searchState, setsearchState] = useState(true);
     const [results, setResults] = useState("")
 
     const [steps, setSteps] = useState([])
@@ -187,9 +182,7 @@ function RecipeCard() {
                 setMusic('')
 
         }
-
-
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=346d76812ee94c709e0825774f1e1d52&addRecipeInformation=true&number=30&type=main course`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${value}&apiKey=${API_KEY}&addRecipeInformation=true&number=30&type=main course`)
             .then(response => {
                 return response.json()
             })
@@ -197,38 +190,57 @@ function RecipeCard() {
                 console.log(response)
                 // console.log(response.results[0].id)
 
-                let i = Math.floor(Math.random() * response.results.length)
+                if (!response.results) {
+                    setResults({
+                        title: "Sorry the Site is too popular at the moment! Come back later <3",
+                        image: "",
+                        time: ""
+                    })
+                    setGetID(
+                        ""
+                    )
+                    setSteps(""
+                    )
 
-                setResults({
-                    title: response.results[i].title,
-                    image: response.results[i].image,
-                    time: response.results[i].readyInMinutes
-                })
-                setGetID(
-                    response.results[i].id
-                )
+                    setMusic('https://open.spotify.com/embed/track/2eRYuzlSOBk3HlMsCSOLPJ')
+                    setStyles("none")
+                    setFoodStyles("no-food")
 
-                setSteps(response.results[i].analyzedInstructions[0].steps.map((e) => (
-                    `${e.step}  `
-                )))
+                } else {
 
-                let id = response.results[i].id
+                    let i = Math.floor(Math.random() * response.results.length)
 
+                    setResults({
+                        title: response.results[i].title,
+                        image: response.results[i].image,
+                        time: response.results[i].readyInMinutes
+                    })
+                    setGetID(
+                        response.results[i].id
+                    )
 
+                    setSteps(response.results[i].analyzedInstructions[0].steps.map((e) => (
+                        `${e.step}  `
+                    )))
+
+                    let id = response.results[i].id
+
+                }
             }
             )
 
-        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=346d76812ee94c709e0825774f1e1d52").then(response => {
+        fetch(`https://api.spoonacular.com/food/trivia/random/?apiKey=${API_KEY}`).then(response => {
             return response.json()
         })
             .then(response => {
                 console.log(response.text)
                 setFact(response.text)
             })
+
     }
 
     function searchIngredients() {
-        fetch(`https://api.spoonacular.com/recipes/${getID}/information?includeNutrition=false&apiKey=346d76812ee94c709e0825774f1e1d52`)
+        fetch(`https://api.spoonacular.com/recipes/${getID}/information?includeNutrition=false&apiKey=${API_KEY}`)
             .then(response => {
                 return response.json()
             })
@@ -248,38 +260,59 @@ function RecipeCard() {
 
     }
 
-    function searchRandom(value) {
+    function searchRandom() {
         // GET request using fetch with error handling
+
+
         setMusic("https://open.spotify.com/embed/playlist/5RhyxlHe1yEFFCGDTHhcwW")
         setStyles('random')
         setFoodStyles('random-food')
 
 
-        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=346d76812ee94c709e0825774f1e1d52&type=main course`)
+        fetch(`https://api.spoonacular.com/recipes/random/?apiKey=${API_KEY}&type=main course`)
             .then(response => {
                 return response.json()
             })
             .then(response => {
                 console.log(response)
                 // console.log(response.results[0].id)
-                setResults({
-                    title: response.recipes[0].title,
-                    image: response.recipes[0].image,
-                    time: response.recipes[0].readyInMinutes
-                })
-                setGetID(
-                    response.recipes[0].id
-                )
 
-                setSteps(response.recipes[0].analyzedInstructions[0].steps.map((e) => (
-                    `${e.step}  `
-                )))
+                if (!response.recipes) {
+                    setResults({
+                        title: "Sorry the Site is too popular at the moment! Come back later <3",
+                        image: "",
+                        time: ""
+                    })
+                    setGetID(
+                        ""
+                    )
+                    setSteps(""
+                    )
 
+                    setMusic('https://open.spotify.com/embed/track/2eRYuzlSOBk3HlMsCSOLPJ')
+                    setStyles("none")
+                    setFoodStyles("no-food")
 
+                } else {
+
+                    setResults({
+                        title: response.recipes[0].title,
+                        image: response.recipes[0].image,
+                        time: response.recipes[0].readyInMinutes
+                    })
+                    setGetID(
+                        response.recipes[0].id
+                    )
+
+                    setSteps(response.recipes[0].analyzedInstructions[0].steps.map((e) => (
+                        `${e.step}  `
+                    )))
+
+                }
             }
             )
 
-        fetch("https://api.spoonacular.com/food/trivia/random/?apiKey=346d76812ee94c709e0825774f1e1d52").then(response => {
+        fetch(`https://api.spoonacular.com/food/trivia/random/?apiKey=${API_KEY}`).then(response => {
             return response.json()
         })
             .then(response => {
@@ -297,27 +330,45 @@ function RecipeCard() {
         setFact("Bummer, sorry you're here bud.")
 
 
-        fetch(`https://api.spoonacular.com/recipes/random?&tags=beverage,drink&apiKey=346d76812ee94c709e0825774f1e1d52&type=main course`)
+        fetch(`https://api.spoonacular.com/recipes/random?&tags=beverage,drink&apiKey=${API_KEY}&type=main course`)
             .then(response => {
                 return response.json()
             })
             .then(response => {
                 console.log(response)
                 // console.log(response.results[0].id)
-                setResults({
-                    title: response.recipes[0].title,
-                    image: response.recipes[0].image,
-                    time: response.recipes[0].readyInMinutes
-                })
-                setGetID(
-                    response.recipes[0].id
-                )
 
-                setSteps(response.recipes[0].analyzedInstructions[0].steps.map((e) => (
-                    `${e.step}  `
-                )))
+                if (!response.recipes) {
+                    setResults({
+                        title: "Sorry the Site is too popular at the moment! Come back later <3",
+                        image: "",
+                        time: ""
+                    })
+                    setGetID(
+                        ""
+                    )
+                    setSteps(""
+                    )
 
+                    setMusic('https://open.spotify.com/embed/track/2eRYuzlSOBk3HlMsCSOLPJ')
+                    setStyles("none")
+                    setFoodStyles("no-food")
 
+                } else {
+                    setResults({
+                        title: response.recipes[0].title,
+                        image: response.recipes[0].image,
+                        time: response.recipes[0].readyInMinutes
+                    })
+                    setGetID(
+                        response.recipes[0].id
+                    )
+
+                    setSteps(response.recipes[0].analyzedInstructions[0].steps.map((e) => (
+                        `${e.step}  `
+                    )))
+
+                }
             }
             )
 
