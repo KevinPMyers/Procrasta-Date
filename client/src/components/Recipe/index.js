@@ -219,9 +219,6 @@ function RecipeCard() {
                     setSteps(response.results[i].analyzedInstructions[0].steps.map((e) => (
                         `${e.step}  `
                     )))
-
-                    let id = response.results[i].id
-
                 }
             }
             )

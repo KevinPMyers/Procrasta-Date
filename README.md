@@ -20,15 +20,27 @@ Our app caters to the last minute preparations for a date that everyone will run
 [Daniel Martinez](https://github.com/DanM1996)
 [Kevin Myers](https://github.com/KevinPMyers)
 
-## Languages
+## Tools Used
 
-HTML, CSS, Javascript, React, JSX, GraphQL
+* HTML
+* CSS
+* JavaScript
+* 3rd Party APIs (Spoonacular, Spotify)
+* Node.js
+* Express.js
+* NoSQL(MongoDB)
+* Mongoose
+* JSONWebToken
+* bcrypt
+* React
+* Ant Design
+* JSX
+* Apollo
+* GraphQL
 
-### Additional Packages, Templates, etc.
+### Our App's Functionality
 
-Node, Express, and GraphQL were used to create a RESTful API. React was used as our template engine with Ant Design used for several components like cards and buttons. MongoDB and Mongoose were used for the database. We also utilized Spoonacular's API to return recipes and Spotify's embeded player to return a selected playlist. 
-
-Install all relevant packages if you wish to clone the repository and explore our application on your own machine
+Our project is a full stack MERN application: we've utilized custom-made CSS paired with Ant Design for a polished front end while using industry standard technology (React, MongoDB) for a robust backend, along with an alternative to REST APIs in the form of GraphQL powered by Apollo. You can sign up and log in to your personal account and access various recipes and songs provided by Spoonacular and Spotify APIs.
 
 ## License
 

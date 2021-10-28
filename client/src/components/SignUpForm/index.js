@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
@@ -7,7 +7,7 @@ import Auth from '../../utils/auth';
 function SignUpForm() {
 
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
-    const [signUp, { error }] = useMutation(ADD_USER);
+    const [signUp] = useMutation(ADD_USER);
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
