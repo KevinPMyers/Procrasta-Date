@@ -62,11 +62,22 @@ header {
 }
 
 .intro{
-  font-size: 30px;
+  font-size: 35px;
   font-weight: 600;
+   padding-right: 200px;
+    padding-left: 200px;
 }
 
+
+.ant-carousel {
+  margin-bottom: 60px;
+}
+
+
+
 .LandingButton{
+  margin-top: 20px ;
+  margin-bottom: 20px ;
   border: 1px solid #80004f;
   border-radius: 6px;
   padding: 10px 20px;
@@ -76,19 +87,62 @@ header {
   color: aliceblue;
 }
 
+.second-button{
+  margin-top: 50px;
+}
+
 .LandingButton:hover{
     background-color: #e658af;
     color: rgb(245, 245, 245);
     border: 1px solid #002364;
 }
 
-.carousel{
-  width: 85%;
-  border-top: solid 6px #b9227f;
+ .LogoutButton {
+   
+  margin-top: 20px ;
+  margin-left: 20px;
+  margin-bottom: 20px ;
+  border: 1px solid #9c0361;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 30px;
+  background-color: #b9227f;
+  color: aliceblue;
+
+  }
+
+  .LogoutButton:hover {
+    background-color: #e73da6;
+      color: aliceblue;
+  }
+
+  .LogoutButton:active {
+    background-color: #c72a8b;
+  }
+
+.carousel {
+  width: 90%;
   border: solid 6px #b9227f;
   margin-left: auto;
   margin-right: auto;
+  background-image: url("../src/assets/CarouselMediaDesktop.png");
+  height: 627px; 
+  background-position: center;
+ 
 }
+
+.carousel2{
+  width: 90%;
+  border: solid 6px #b9227f;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url("../src/assets/Carousel2Media800.png");
+  height: 627px; 
+  background-position: center;
+ 
+}
+
 
 .spotify {
   width: 700px;
@@ -97,10 +151,23 @@ header {
   border-radius: 5px;
 }
 
+
 .recipe{
 width: 700px;  
 border: 3px solid #b9227f;;
 border-radius: 5px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.pre-recipe {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -421,7 +488,7 @@ border-radius: 5px;
 }
 
 .help-me{
-  margin-top: 20px;
+  margin-top: 60px;
   font-size: 30px;
   border: 1px solid #80004f;
   margin-left: 30px;
@@ -433,6 +500,12 @@ border-radius: 5px;
 }
 
 .help-me:hover{
+    background-color: #e658af;
+    color: rgb(245, 245, 245);
+    border: 1px solid #002364;
+}
+
+.help-me:focus{
     background-color: #e658af;
     color: rgb(245, 245, 245);
     border: 1px solid #002364;
@@ -511,6 +584,19 @@ footer {
 
 
 @media screen and (max-width: 800px) {
+
+   .intro {
+      font-size: 25px;
+    padding-right: 70px;
+    padding-left: 70px;
+    
+  }
+
+  .carousel{
+  background-image: url("../src/assets/CarouselMedia800.png");
+
+}
+
   .recipe {
     width: 500px;
     margin-left: auto;
@@ -536,12 +622,44 @@ footer {
   }
 
   footer {
+  margin-top: 130px;
   padding-left: 80px;
   padding-right: 80px;
   font-size: 20px;
 }
+
+
 }
 @media screen and (max-width: 540px) {
+
+  .forked-up {
+    margin-bottom: 15px;
+  }
+
+  .LandingButton {
+    font-size: 25px;
+  }
+
+    .carousel{
+  background-image: url("../src/assets/CarouselMedia540.png");
+      height: 500px;
+}
+
+   .carousel2{
+  background-image: url("../src/assets/Carousel2Media540.png");
+      height: 500px;
+}
+
+  .intro {
+    padding-right: 60px;
+    padding-left: 60px;
+    
+  }
+
+     .sub-header {
+    margin-bottom: 20px;
+  }
+
   .recipe {
     width: 350px;
     margin-left: auto;
@@ -562,9 +680,30 @@ footer {
     font-size: 40px;
   }
 
+  
+
 }
 
 @media screen and (max-width: 400px) {
+
+  .LogoutButton {
+   
+  margin-top: 20px ;
+  border: 1px solid #80004f;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 30px;
+  background-color: #b9227f;
+  color: aliceblue;
+
+  }
+
+
+  .intro {
+    font-size: 20px;
+  }
+
   .recipe {
     width: 90%;
     margin:auto;
