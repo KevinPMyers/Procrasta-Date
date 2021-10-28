@@ -15,21 +15,19 @@ function FoodCarousel() {
     };
 
 
-
-
     return (
         <div >
-            <Carousel  autoplay="true">
+            <Carousel autoplay="true">
                 <div>
-                    <img className="carousel" src={CarouselOne}></img>
+                    <img className="carousel" ></img>
 
                 </div>
                 <div>
-                    <img className="carousel" src={CarouselTwo}></img>
+                    <img className="carousel2" ></img>
                 </div>
 
 
-            </Carousel>,
+            </Carousel>
 
         </div>
     )

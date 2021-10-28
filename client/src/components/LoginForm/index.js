@@ -24,7 +24,7 @@ function LoginForm() {
     // submit form
     const handleFormSubmit = async event => {
 
-        event.preventDefault();
+
 
         try {
             const { data } = await login({
@@ -51,29 +51,29 @@ function LoginForm() {
             labelCol={{ span: 9 }}
             wrapperCol={{ span: 6 }}
             initialValues={{ remember: true }}
+            onFinish={handleFormSubmit}
             autoComplete="off"
         >
             <Form.Item
                 label="Username"
                 name="username"
                 rules={[{ required: true, message: 'Please input your username!' }]}
-                value={formState.username}
-                onChange={handleChange}
+
             >
-                <Input name="username" />
+                <Input name="username" onChange={handleChange} />
             </Form.Item>
 
             <Form.Item
                 label="Password"
                 name="password"
                 rules={[{ required: true, message: 'Please input your password!' }]}
-                value={formState.password} onChange={handleChange}
+
             >
-                <Input.Password name="password" />
+                <Input.Password name="password" onChange={handleChange} />
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                <Button type="primary" htmlType="submit" onSubmit={handleFormSubmit}>
+                <Button type="primary" htmlType="submit" >
                     Submit
                 </Button>
             </Form.Item>

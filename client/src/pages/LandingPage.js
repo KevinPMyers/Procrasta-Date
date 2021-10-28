@@ -1,26 +1,26 @@
-import { React, useState } from 'react';
-import { Button, Radio } from 'antd';
+import { React } from 'react';
 import Auth from '../utils/auth';
-import Fork from '../assets/ForkedUp.png'
 import FoodCarousel from '../components/Carousel'
+import { Link } from 'react-router-dom';
 
 
 function LandingPage() {
 
-      const loggedIn = Auth.loggedIn();
+    const loggedIn = Auth.loggedIn();
 
 
     return (
 
-        <div className="LandingPage">       
-        
-             {
-                            loggedIn ? (
-                            <FoodCarousel /> ) :
-                        <div>
-                            <FoodCarousel />
-                            <Button type="submit" className="LandingButton" href="/login-page">Login/Sign Up</Button>
-                        </div>} 
+        <div className="LandingPage">
+
+            {
+                loggedIn ? (
+                    <FoodCarousel />) :
+                    <div>
+                        <FoodCarousel />
+                        <Link className="LandingButton" to="/login-page">Login/SignUp</Link>
+
+                    </div>}
 
         </div >
     );
