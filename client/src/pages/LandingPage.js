@@ -1,7 +1,5 @@
-import { React, useState } from 'react';
-import { Button, Radio } from 'antd';
+import { React } from 'react';
 import Auth from '../utils/auth';
-import Fork from '../assets/ForkedUp.png'
 import FoodCarousel from '../components/Carousel'
 import { Link } from 'react-router-dom';
 
