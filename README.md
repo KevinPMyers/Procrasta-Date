@@ -67,7 +67,7 @@ SOFTWARE.
 
 ## Documentation
 
-Live Deployed Application (Heroku): 
+Live Deployed Application (Heroku): https://procrasta-date.herokuapp.com/
 
 Here is a look at our application! 
 
@@ -83,5 +83,3 @@ Once you're signed in, you will be able to select a recipe by cusine and get bac
 
 ![Screenshot](client/src/assets/RecipeScreenshot.png)
 
-Presentation Link:
-https://docs.google.com/presentation/d/1LSfwPnX9z6vsILPbMRV2R8mu5uy-Q4F9qr_QrpsMZaM/edit?usp=sharing 
